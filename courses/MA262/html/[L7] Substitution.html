@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Differential Equations: Substitution Methods</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .page-break {
+            border-top: 2px solid #eee;
+            margin: 40px 0;
+            padding-top: 20px;
+        }
+        .example-box {
+            background-color: #f9f9f9;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .substitution-rule {
+            background-color: #e8f4f8;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head><body><header>
+<h1>Section 1.6: Substitution Methods</h1>
+<p><strong>Goal:</strong> Change new types of ODEs into separable or 1st order linear equations.</p>
+</header><main>
+<section class="example-box">
+<h2>Example 1: Solving via Substitution</h2>
+<p>Solve the ODE: $$\frac{dy}{dx} = (4x + y)^2$$</p>
+<h3>Step 1: Substitution</h3>
+<p>Set $v = 4x + y$. By isolating $y$, we get $y = v - 4x$.</p>
+<h3>Step 2: Implicit Differentiation</h3>
+<p>Differentiating $y$ with respect to $x$: $$\frac{dy}{dx} = \frac{dv}{dx} - 4$$</p>
+<h3>Step 3: Substitute back into original ODE</h3>
+<p>$$\frac{dv}{dx} - 4 = v^2 \implies \frac{dv}{dx} = v^2 + 4$$</p>
+<p>This is now a <strong>separable</strong> equation.</p>
+<h3>Step 4: Solve for $v$</h3>
+<p>$$\int \frac{dv}{v^2 + 4} = \int dx$$</p>
+<p>Using the arctan integral formula: $$\frac{1}{2} \tan^{-1}\left(\frac{v}{2}\right) = x + C$$</p>
+<p>$$\tan^{-1}\left(\frac{v}{2}\right) = 2x + C \implies v = 2 \tan(2x + C)$$</p>
+<h3>Step 5: "Un-substitute"</h3>
+<p>Since $y = v - 4x$: $$y = 2 \tan(2x + C) - 4x$$</p>
+</section>
+<p class="substitution-rule">General Rule: For equations of the form $y' = f(ax + by + c)$, use the substitution $v = ax + by + c$ to make the ODE separable.</p>
+<div class="page-break" aria-hidden="true"></div>
+<section>
+<h2>Homogeneous Equations</h2>
+<p>Definition: An equation is "homogeneous" if changing $x \to \epsilon x$ and $y \to \epsilon y$ and simplifying yields the original equation.</p>
+<div class="example-box">
+<h3>Example 2: Implicit Solution</h3>
+<p>Find an implicit solution for: $$\frac{dy}{dx} = \frac{2x - y}{x + 7y}$$</p>
+<p><strong>Verification:</strong> $$\frac{d(\epsilon y)}{d(\epsilon x)} = \frac{2(\epsilon x) - \epsilon y}{\epsilon x + 7\epsilon y} = \frac{\epsilon(2x - y)}{\epsilon(x + 7y)} = \frac{2x - y}{x + 7y}$$ Since the $\epsilon$ cancels, it is homogeneous.</p>
+<p><strong>Method:</strong> For homogeneous equations, set $v = \frac{y}{x}$ (or $y = vx$).</p>
+<p>Using implicit differentiation: $$\frac{dy}{dx} = v + x\frac{dv}{dx}$$</p>
+<p><strong>Substitution:</strong> $$v + x\frac{dv}{dx} = \frac{2x - vx}{x + 7vx} = \frac{2 - v}{1 + 7v}$$ $$x\frac{dv}{dx} = \frac{2 - v}{1 + 7v} - v = \frac{2 - v - v(1 + 7v)}{1 + 7v}$$ $$x\frac{dv}{dx} = \frac{2 - 2v - 7v^2}{1 + 7v}$$</p>
+</div>
+</section>
+<div class="page-break" aria-hidden="true"></div>
+<section>
+<h3>Continuing Example 2 (Solving the Separable Equation):</h3>
+<p>$$\int \frac{1 + 7v}{2 - 2v - 7v^2} dv = \int \frac{1}{x} dx$$</p>
+<p>Let $u = 2 - 2v - 7v^2$, then $du = (-2 - 14v)dv = -2(1 + 7v)dv$.</p>
+<p>The integral becomes: $$-\frac{1}{2} \ln|u| = \ln|x| + C$$</p>
+<p>$$-\frac{1}{2} \ln|2 - 2v - 7v^2| = \ln|x| + C$$</p>
+<p>Multiplying by -2 and exponentiating: $$|2 - 2v - 7v^2| = |x|^{-2} \cdot e^C \implies 2 - 2v - 7v^2 = \frac{C}{x^2}$$</p>
+<p><strong>Final Step (Replace $v = y/x$):</strong></p>
+<p>$$2 - \frac{2y}{x} - \frac{7y^2}{x^2} = \frac{C}{x^2}$$</p>
+<p>Multiplying by $x^2$ to get an implicit solution $F(x,y) = C$: <strong>$$2x^2 - 2xy - 7y^2 = C$$</strong></p>
+</section>
+<div class="page-break" aria-hidden="true"></div>
+<section>
+<h2>Bernoulli Equations</h2>
+<p>Form: $y' + P(x)y = Q(x)y^n$ where $n \in \mathbb{R}$.</p>
+<ul>
+<li>If $n=0$, it is a 1st order linear equation.</li>
+<li>If $n=1$, it is linear and separable.</li>
+<li>Otherwise, use substitution: $v = y^{1-n}$. This transforms the ODE into a 1st order linear equation.</li>
+</ul>
+<div class="example-box">
+<h3>Example 3: Bernoulli ODE</h3>
+<p>Solve: $x^2y' + xy = y^2$</p>
+<p>Standard form ($y' + P y = Q y^n$): $$y' + \frac{1}{x}y = \frac{1}{x^2}y^2$$</p>
+<p>Here $n=2$, so $v = y^{1-2} = y^{-1}$. This implies $y = v^{-1}$ and $y' = -v^{-2}v'$.</p>
+<p><strong>Substitute:</strong> $$-v^{-2}v' + \frac{1}{x}v^{-1} = \frac{1}{x^2}v^{-2}$$</p>
+<p>Multiply by $-v^2$: $$v' - \frac{1}{x}v = -\frac{1}{x^2}$$</p>
+<p>Solve using Integrating Factor ($\rho$): $$\rho = e^{\int -\frac{1}{x} dx} = e^{-\ln x} = \frac{1}{x}$$ $$\frac{1}{x}v = \int \left(\frac{1}{x} \cdot -\frac{1}{x^2}\right) dx = \int -x^{-3} dx = \frac{1}{2}x^{-2} + C$$ $$v = \frac{1}{2x} + Cx$$</p>
+<p><strong>Un-substitute:</strong> $$y = v^{-1} = \frac{1}{\frac{1}{2x} + Cx} = \frac{2x}{1 + 2Cx^2}$$</p>
+</div>
+</section>
+<div class="page-break" aria-hidden="true"></div>
+<section class="example-box">
+<h3>Example 4: General Solution (Homogeneous)</h3>
+<p>Solve: $x^2y' = xy + x^2e^{y/x}$</p>
+<p>Isolate $y'$: $y' = \frac{y}{x} + e^{y/x}$</p>
+<p>Set $v = y/x \implies y = vx$ and $y' = v + x\frac{dv}{dx}$.</p>
+<p><strong>Sub:</strong> $$v + x\frac{dv}{dx} = v + e^v \implies x\frac{dv}{dx} = e^v$$</p>
+<p><strong>Solve:</strong> $$\int e^{-v} dv = \int \frac{1}{x} dx \implies -e^{-v} = \ln|x| + C$$</p>
+<p>$$e^{-v} = C - \ln|x| \implies -v = \ln(C - \ln|x|)$$ $$v = -\ln(C - \ln|x|)$$</p>
+<p><strong>Final Solution:</strong> $$y = -x \ln(C - \ln|x|)$$</p>
+</section>
+</main></body></html>

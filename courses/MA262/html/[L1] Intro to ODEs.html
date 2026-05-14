@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"><head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>MA 262 Section 1.1: Introduction to Differential Equations</title> <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> <style> body { font-family: Arial, sans-serif; line-height: 1.6; color: #1a1a1a; max-width: 800px; margin: 0 auto; padding: 20px; } h1, h2, h3 { color: #2c3e50; } .page-break { border-top: 2px solid #eee; margin: 40px 0; padding-top: 20px; } .example-box { background-color: #f9f9f9; border-left: 5px solid #3498db; padding: 15px; margin: 20px 0; } .note { font-style: italic; color: #555; } </style> </head><body><header>
+<h1>Section 1.1 Introduction to Differential Equations</h1>
+<p><strong>Instructor:</strong> Dr. Daniels</p>
+</header><main>
+<section id="definitions">
+<h2>1. Basic Definitions</h2>
+<h3>Ordinary Differential Equation (ODE)</h3>
+<p>An ODE involves one independent variable, some dependent variable/function, and its derivatives.</p>
+<div class="example-box">
+<p><strong>Examples of ODEs:</strong></p>
+<ul>
+<li>\(y' = ky\) (where \(y' = \frac{dy}{dx}\) and \(k\) is a constant)</li>
+<li>\(x'' - 3x' + x = \cos(t)\) (where \(x' = \frac{dx}{dt}\))</li>
+<li>\(\frac{dP}{dt} = k \cdot P(M - P)\) (where \(k\) and \(M\) are constants)</li>
+</ul>
+</div>
+<h3>Partial Differential Equation (PDE)</h3>
+<p>A PDE involves multiple independent variables and partial derivatives.</p>
+<div class="example-box">
+<p><strong>Example: Heat Equation</strong></p>
+<p>Let \(u(x, t)\) represent heat at position \(x\) and time \(t\):</p>
+<p>$$\frac{\partial^2 u}{\partial x^2} + \frac{\partial u}{\partial t} = 0$$</p>
+</div>
+</section>
+<hr class="page-break" aria-hidden="true">
+<section id="solutions">
+<h2>2. Verifying Solutions</h2>
+<p>A differential equation is like a "template" or "model." You plug a function into it to check if the function <strong>satisfies the equation</strong> (i.e., the equality is TRUE).</p>
+<h3>Example 1: Checking \(y' = 7y\)</h3>
+<div class="example-box">
+<p><strong>Case A:</strong> Is \(y = \sin(7x)\) a solution?</p>
+<p>Derivative: \(y' = 7\cos(7x)\)</p>
+<p>Plug into ODE: \(7\cos(7x) \stackrel{?}{=} 7\sin(7x)\)</p>
+<p><strong>Result:</strong> False. \(y = \sin(7x)\) does <strong>not</strong> satisfy the ODE.</p>
+<br>
+<p><strong>Case B:</strong> Is \(y = e^{7x}\) a solution?</p>
+<p>Derivative: \(y' = 7e^{7x}\)</p>
+<p>Plug into ODE: \(7e^{7x} \stackrel{?}{=} 7(e^{7x})\)</p>
+<p><strong>Result:</strong> True. \(y = e^{7x}\) <strong>does</strong> satisfy the ODE.</p>
+</div>
+<h3>Example 2: Checking \(y' = 12x^2(y^2 + 1)\)</h3>
+<div class="example-box">
+<p><strong>Case A:</strong> Is \(y = e^x\) a solution?</p>
+<p>Plug in: \(e^x \stackrel{?}{=} 12x^2((e^x)^2 + 1)\)</p>
+<p><strong>Result:</strong> No, \(y = e^x\) is not a solution.</p>
+<br>
+<p><strong>Case B:</strong> Is \(y = \tan(4x^3 + C)\) a solution?</p>
+<p>Derivative: \(y' = \sec^2(4x^3 + C) \cdot (12x^2)\)</p>
+<p>Plug into ODE: \(12x^2 \sec^2(4x^3 + C) \stackrel{?}{=} 12x^2(\tan^2(4x^3 + C) + 1)\)</p>
+<p>Using the identity \(\sec^2(x) = \tan^2(x) + 1\):</p>
+<p><strong>Result:</strong> Yes, it is a solution.</p>
+</div>
+</section>
+<hr class="page-break" aria-hidden="true">
+<section id="general-solutions">
+<h2>3. General Solutions</h2>
+<p>Differential equations can have many solutions. A <strong>general solution</strong> describes an infinite family of solutions and usually involves an unknown constant \(C\).</p>
+<div class="example-box">
+<p><strong>Examples:</strong></p>
+<ul>
+<li>For \(y' = 2x\), the general solution is \(y = x^2 + C\). (e.g., \(y = x^2\), \(y = x^2 - 3\), \(y = x^2 + \pi\) are all individual solutions).</li>
+<li>For \(y' = 12x^2(y^2 + 1)\), the general solution is \(y = \tan(4x^3 + C)\).</li>
+<li>For \(y' = 7y\), the general solution is \(y = Ce^{7x}\).</li>
+</ul>
+</div>
+<h3>Application: Newton's 2nd Law</h3>
+<p>In physics, if \(x(t)\) describes the motion of an object, it must satisfy the differential equation:</p>
+<p>$$m x'' = F$$</p>
+</section>
+</main></body></html>

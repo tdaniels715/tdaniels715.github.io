@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Differential Equations: Exact and Reducible Equations</title>
+    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .section {
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        .example {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-left: 5px solid #3498db;
+            margin: 20px 0;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+    </style>
+</head><body><header>
+<h1>Differential Equations: Section 1.6</h1>
+<p>Topic: Exact Equations and Reducible Second-Order Equations</p>
+</header><main>
+<section class="section" aria-labelledby="exact-equations">
+<h2 id="exact-equations">1. Exact Equations</h2>
+<p>An ordinary differential equation (ODE) of the form \(M(x,y)dx + N(x,y)dy = 0\) is considered an <strong>exact equation</strong> if it satisfies the condition: \[ \frac{\partial M}{\partial y} = \frac{\partial N}{\partial x} \quad (M_y = N_x) \]</p>
+<p>If this condition is met, there exists a <strong>potential function</strong> \(F(x,y)\) such that the total differential is: \[ dF = \frac{\partial F}{\partial x}dx + \frac{\partial F}{\partial y}dy \] The implicit solution to the ODE is always \(F(x,y) = C\).</p>
+<div class="example" aria-labelledby="example-1">
+<h3 id="example-1">Example: Finding an Implicit Solution</h3>
+<p>Solve: \((6xy - y^3)dx + (4y + 3x^2 - 3xy^2)dy = 0\)</p>
+<ol>
+<li><strong>Check for exactness:</strong><br>\(M = 6xy - y^3 \implies M_y = 6x - 3y^2\)<br>\(N = 4y + 3x^2 - 3xy^2 \implies N_x = 6x - 3y^2\)<br>Since \(M_y = N_x\), the equation is exact.</li>
+<li><strong>Find \(F(x,y)\):</strong><br>Integrate \(M\) with respect to \(x\): \[ F = \int (6xy - y^3) dx = 3x^2y - xy^3 + g(y) \]</li>
+<li><strong>Solve for \(g(y)\):</strong><br>Differentiate \(F\) with respect to \(y\) and set it equal to \(N\): \[ \frac{\partial F}{\partial y} = 3x^2 - 3xy^2 + g'(y) = 4y + 3x^2 - 3xy^2 \] \[ g'(y) = 4y \implies g(y) = 2y^2 + C_1 \]</li>
+<li><strong>Final Implicit Solution:</strong> \[ 3x^2y - xy^3 + 2y^2 = C \]</li>
+</ol>
+</div>
+</section>
+<section class="section" aria-labelledby="reducible-equations">
+<h2 id="reducible-equations">2. Reducible Second-Order Equations</h2>
+<p>Some second-order equations can be reduced to first-order equations by substitution. These typically yield solutions with two unknown constants (\(C_1, C_2\)).</p>
+<h3>Type A: "y" is missing</h3>
+<p>Equations where \(x, y', \text{ and } y''\) appear, but \(y\) does not.</p>
+<p><strong>Substitution:</strong> Let \(v = y'\), then \(y'' = v'\).</p>
+<div class="example">
+<p>Solve: \(xy'' + y' = x\) (given \(x &gt; 0\))</p>
+<p>Substituting \(v = y'\) gives the 1st order linear equation: \(v' + \frac{1}{x}v = 1\).<br>Using the integrating factor \(\rho = e^{\int \frac{1}{x} dx} = x\): \[ xv = \int x dx \implies xv = \frac{x^2}{2} + C_1 \implies v = \frac{x}{2} + \frac{C_1}{x} \] Since \(v = y'\), integrate again: \[ y = \int \left( \frac{x}{2} + \frac{C_1}{x} \right) dx = \frac{x^2}{4} + C_1 \ln x + C_2 \]</p>
+</div>
+<h3>Type B: "x" is missing</h3>
+<p>Equations where \(y, y', \text{ and } y''\) appear, but \(x\) does not.</p>
+<p><strong>Substitution:</strong> Let \(y' = v\). To replace \(y''\), use the chain rule:</p>
+\[ y'' = \frac{dv}{dx} = \frac{dv}{dy} \cdot \frac{dy}{dx} = v \frac{dv}{dy} \]
+<div class="example">
+<p>Solve: \(y'' = -25y\) (assuming \(y, y' &gt; 0\))</p>
+<p>Substitute \(y'' = v \frac{dv}{dy}\): \[ v \frac{dv}{dy} = -25y \implies \int v dv = \int -25y dy \] \[ \frac{1}{2}v^2 = -\frac{25}{2}y^2 + C_1 \implies v = \sqrt{C_1 - 25y^2} \] Since \(v = \frac{dy}{dx}\), separate variables: \[ \int \frac{dy}{\sqrt{C_1 - 25y^2}} = \int dx \] Using the identity \(\int \frac{dx}{\sqrt{k^2 - x^2}} = \sin^{-1}(\frac{x}{k}) + C\): \[ y = C_1 \sin(5x + C_2) \]</p>
+</div>
+</section>
+</main><footer>
+<p><em>Note: To find a particular solution for second-order equations, two data points (initial conditions) are required to solve for \(C_1\) and \(C_2\).</em></p>
+</footer></body></html>

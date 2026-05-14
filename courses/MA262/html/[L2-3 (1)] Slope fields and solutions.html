@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en"><head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>MA 262 Section 1.2/1.3: Slope Fields and Solutions</title> <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> <style> body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #2c3e50; max-width: 900px; margin: 0 auto; padding: 20px; background-color: #fdfdfd; } h1, h2 { color: #2980b9; border-bottom: 2px solid #eee; padding-bottom: 10px; } .container { background-color: white; padding: 30px; box-shadow: 0 0 10px rgba(0,0,0,0.05); border-radius: 8px; } .example { background-color: #f1f8ff; border-left: 5px solid #2980b9; padding: 15px; margin: 20px 0; } .definition { background-color: #fcf3cf; border-left: 5px solid #f1c40f; padding: 15px; margin: 20px 0; } .page-break { margin: 40px 0; border: 0; border-top: 1px dashed #ccc; } img { max-width: 100%; height: auto; display: block; margin: 20px auto; } </style> </head><body><div class="container"><header><br>
+<div class="container"><header>
+<h1>Section 1.2/1.3: Slope Fields and Solutions</h1>
+</header>
+<section id="page-1">
+<h2>Slope Fields and Solution Curves</h2>
+<div class="definition-box">
+<p><strong>Slope Field:</strong> An Ordinary Differential Equation (ODE) of the form \(\frac{dy}{dx} = f(x,y)\) specifies a slope value (from left to right) at each point in the \((x,y)\)-plane.</p>
+<p><strong>Solution Curve:</strong> A curve in the \(xy\)-plane whose derivatives "follow the slope field" determined by the ODE.</p>
+</div>
+<div class="example-box">
+<h3>Example: \(y' = x - y\)</h3>
+<section>
+<h2>Document: Slope Fields and Solutions (Page 1)</h2>
+<div class="alt-text-entry">
+<h3>Image 1: Slope Field for&nbsp;\(y' = x - y\)</h3>
+<img src="[L2-3] image2.png" alt="&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&nbsp;&lt;/p&gt;
+&lt;p&gt;A coordinate plane showing a slope field where small line segments represent the tangent slope at various points \((x, y)\). The slopes follow the function \(f(x, y) = x - y\).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;General Solutions:&lt;/strong&gt; Multiple green curves are sketched across the plane, flowing in the direction of the slope segments. These curves converge toward a diagonal path as \(x\) increases.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Particular Solution (IVP):&lt;/strong&gt; A single prominent red curve is highlighted. This curve specifically passes through the point \((-4, 3)\), representing the solution to the Initial Value Problem \(y' = x - y\) with \(y(-4) = 3\).&lt;/li&gt;
+&lt;/ul&gt;" title="" width="324" height="295"></div>
+</section>
+<ul>
+<li>The green curves represent various general solution curves.</li>
+<li><strong>Initial Value Problem (IVP):</strong> To find a specific curve, we use an initial value such as \(y(-4) = 3\).</li>
+<li>The red curve represents the unique solution passing through the point \((-4, 3)\).</li>
+</ul>
+</div>
+</section>
+<hr class="page-break" aria-hidden="true">
+<section id="page-2">
+<h2>Classifying Solutions</h2>
+<h3>1. General vs. Particular</h3>
+<ul>
+<li><strong>General Solution:</strong> Includes an unknown constant \(C\).
+<ul>
+<li>Example: \(y = x^2 + C\) is the general solution for \(y' = 2x\).</li>
+</ul>
+</li>
+<li><strong>Particular Solution:</strong> A solution where the constant \(C\) has been determined, usually by an initial condition.
+<ul>
+<li>Example: \(y = x^2 + 7\) is the particular solution for the IVP \(\{y' = 2x, y(0) = 7\}\).</li>
+</ul>
+</li>
+</ul>
+<h3>2. Explicit vs. Implicit</h3>
+<ul>
+<li><strong>Explicit Solution:</strong> The dependent variable is isolated, e.g., \(y = f(x)\).
+<ul>
+<li>Example: \(y = \tan(4x^3 + C)\).</li>
+</ul>
+</li>
+<li><strong>Implicit Solution:</strong> The solution is given as a relationship between variables, e.g., \(F(x,y) = C\).
+<ul>
+<li>Example: \(x^2 + y^2 = C\).</li>
+</ul>
+</li>
+</ul>
+<div class="example-box">
+<p><strong>Note:</strong> You can verify an implicit solution using implicit differentiation. For \(x^2 + y^2 = C\):</p>
+<p>\[2x + 2yy' = 0 \implies y' = -\frac{x}{y}\]</p>
+</div>
+</section>
+<hr class="page-break" aria-hidden="true">
+<section id="page-3">
+<h2>Matching ODEs to Slope Fields</h2>
+<p>To identify an ODE from a slope field, analyze where the slopes are zero, positive, or negative.</p>
+<h3><img src="[L2-3] image1.png" alt="Description: A slope field visualization used for a matching exercise. The segments show the following characteristics:  Equilibrium Lines: At \(y = 3\) and \(y = 0\), the slope segments are perfectly" title="Description: A slope field visualization used for a matching exercise. The segments show the following characteristics:  Equilibrium Lines: At \(y = 3\) and \(y = 0\), the slope segments are perfectly" width="455" height="298"></h3>
+<h3>Step-by-Step Analysis</h3>
+<ol>
+<li><strong>Find Equilibria:</strong> Observe where the slopes are horizontal (\(y' = 0\)). In this field, this occurs at \(y = 0\) and \(y = 3\).</li>
+<li><strong>Check Regions:</strong>
+<ul>
+<li>For \(y &gt; 3\): The slopes are positive (increasing).</li>
+<li>For \(0 &lt; y &lt; 3\): The slopes are negative (decreasing).</li>
+<li>For \(y &lt; 0\): The slopes are positive (increasing).</li>
+</ul>
+</li>
+<li><strong>Test Equations:</strong>
+<ul>
+<li>Consider \(y' = y(y - 3)\).
+<ul>
+<li>If \(y=4\): \(4(4-3) = +4\) (Matches).</li>
+<li>If \(y=1\): \(1(1-3) = -2\) (Matches).</li>
+<li>If \(y=-1\): \(-1(-1-3) = +4\) (Matches).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Result:</strong> The slope field corresponds to the differential equation \(y' = y(y - 3)\).</p>
+</section>
+</div>
+</header></div>
+<section></section></body></html>

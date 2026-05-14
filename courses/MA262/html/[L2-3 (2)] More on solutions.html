@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More on Solutions - ODE Notes</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #ffffff;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        section {
+            margin-bottom: 3rem;
+            padding: 1rem;
+            border-left: 4px solid #3498db;
+            background-color: #f8f9fa;
+        }
+        .example {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+        .definition {
+            font-style: italic;
+            color: #e67e22;
+            font-weight: bold;
+        }
+        code {
+            background-color: #eee;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+    </style>
+</head><body><header>
+<h1>Differential Equations: More on Solutions</h1>
+</header><main>
+<section id="newton-cooling">
+<h2>1. Newton's Law of Cooling</h2>
+<p><strong>Variables:</strong></p>
+<ul>
+<li>\( T \): Object's temperature</li>
+<li>\( t \): Time</li>
+<li>\( A \): Ambient temperature</li>
+</ul>
+<p>The rate of change of temperature is proportional to the difference between ambient temperature and the object's temperature: \[ \frac{dT}{dt} \propto (A - T) \longrightarrow \frac{dT}{dt} = k(A - T) \] Where \( k &gt; 0 \).</p>
+<p><strong>Observations:</strong></p>
+<ul>
+<li>If \( T &lt; A \), then \( T' &gt; 0 \) (The object warms up).</li>
+<li>If \( T = A \), then \( T' = 0 \) (Thermal equilibrium).</li>
+<li>If \( T &gt; A \), then \( T' &lt; 0 \) (The object cools).</li>
+</ul>
+</section>
+<section id="general-solutions">
+<h2>2. General and Particular Solutions</h2>
+<p>If an Ordinary Differential Equation (ODE) is in the form \( y' = f(x) \), the general solution is found via integration: \( y = \int f(x) dx + C \).</p>
+<div class="example">
+<h3>Example 1: Basic Integration</h3>
+<p>Find the general solution for \( y' = 2x + 3 \):</p>
+\[ \int dy = \int (2x + 3) dx \] \[ y + c_1 = x^2 + 3x + c_2 \] \[ y = x^2 + 3x + C \quad \text{(General Solution)} \]
+<p><strong>Find the particular solution</strong> given the initial value \( y(1) = 2 \):</p>
+\[ 2 = (1)^2 + 3(1) + C \] \[ 2 = 4 + C \implies C = -2 \] \[ y = x^2 + 3x - 2 \quad \text{(Particular Solution/Solution to IVP)} \]</div>
+<div class="example">
+<h3>Example 2: Inverse Trigonometric Form</h3>
+<p>Find the general solution for \( \{y' = \frac{12}{x^2 + 16}\} \):</p>
+<p><em>Recall:</em> \( \frac{d}{dx}[\tan^{-1}(\frac{x}{a})] = \frac{a}{x^2 + a^2} \)</p>
+\[ \frac{dy}{dx} = 3 \cdot \frac{4}{x^2 + 4^2} \] \[ y = 3\tan^{-1}\left(\frac{x}{4}\right) + C \]
+<p><strong>Find the particular solution</strong> for \( y(0) = 1 \):</p>
+\[ 1 = 3\tan^{-1}(0) + C \longrightarrow 1 = C \] \[ y = 3\tan^{-1}\left(\frac{x}{4}\right) + 1 \]</div>
+</section>
+<section id="physics-applications">
+<h2>3. Acceleration, Velocity, and Position</h2>
+<p>For constant acceleration \( a(t) = x''(t) = 7 \):</p>
+<ol>
+<li>Integrate once for velocity: \( v(t) = x'(t) = 7t + C_1 \)</li>
+<li>Integrate again for position: \( x(t) = \frac{7}{2}t^2 + C_1t + C_2 \)</li>
+</ol>
+<p><strong>Note:</strong> A 2nd order ODE general solution contains two unknown constants. These correspond to physical initial conditions:</p>
+<ul>
+<li>\( C_1 = v(0) = v_0 \) (Initial velocity)</li>
+<li>\( C_2 = x(0) = x_0 \) (Initial position)</li>
+</ul>
+Final form: \( x(t) = \frac{7}{2}t^2 + v_ot + x_o \)
+<p></p>
+</section>
+<section id="modeling">
+<h2>4. Modeling an ODE from Geometric Properties</h2>
+<p><strong>Problem:</strong> Write an ODE for \( y(x) \) such that the tangent line at \( (x, y) \) passes through the point \( (-y, x) \).</p>
+<p><img src="%5BL2-3%5D%20image3.png" alt="An xy-plane with a line drawn through two points \( (x,y) \) and \( (-y,x) \)." title="An xy-plane with a line drawn through two points \( (x,y) \) and \( (-y,x) \)." data-d2l-editor-default-img-style="true" style="max-width: 100%;"></p>
+<p>The slope of the tangent line \( y' \) is determined by the two points \( (x, y) \) and \( (-y, x) \):</p>
+\[ \text{slope} = \frac{\Delta y}{\Delta x} = \frac{y - x}{x - (-y)} = \frac{y - x}{x + y} \]
+<p>Therefore, the ODE is:</p>
+\[ \frac{dy}{dx} = \frac{y - x}{x + y} \]</section>
+</main></body></html>

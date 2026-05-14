@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stability and Equilibrium of Autonomous ODEs</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+        }
+        .definition-box {
+            background-color: #f0f4f8;
+            border-left: 6px solid #2980b9;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .example-box {
+            background-color: #ffffff;
+            border: 1px solid #dcdcdc;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .math-center {
+            text-align: center;
+            margin: 15px 0;
+        }
+    </style>
+</head><body><header>
+<h1>Stability and Equilibrium</h1>
+<p><strong>Section 2.2</strong></p>
+</header><main>
+<section>
+<h2>Autonomous Equations</h2>
+<p>An Ordinary Differential Equation (ODE) is considered <strong>autonomous</strong> if there is no explicit dependence on the independent variable \(t\):</p>
+<div class="math-center">$$\frac{dy}{dt} = f(y)$$</div>
+<p>Common population models like exponential growth and logistic growth are examples of autonomous equations:</p>
+<ul>
+<li>Exponential Growth: \(\frac{dP}{dt} = kP\)</li>
+<li>Logistic Growth: \(\frac{dP}{dt} = kP(M-P)\)</li>
+</ul>
+<div class="definition-box">
+<h3>Definition: Critical Point</h3>
+<p>A <strong>critical point</strong> of an autonomous equation is a value \(y = c\) (or \(P = c\)) such that \(f(c) = 0\). At this point, \(\frac{dy}{dt} = 0\), making the constant function \(y(t) \equiv c\) an <strong>equilibrium solution</strong>.</p>
+</div>
+</section>
+<section>
+<h2>Classifying Stability</h2>
+<p>Stability describes how solution curves behave in the neighborhood of a critical point:</p>
+<ul>
+<li><strong>Unstable:</strong> Solution curves are "repelled away" from the critical point on both sides.</li>
+<li><strong>Stable:</strong> Solution curves move "toward" the critical point from both sides.</li>
+<li><strong>Semi-stable:</strong> Solution curves move "away" on one side and "toward" on the other.</li>
+</ul>
+</section>
+<hr aria-hidden="true">
+<section>
+<h2>Worked Examples</h2>
+<div class="example-box">
+<h3>Example 1: Basic Analysis</h3>
+<p>Given \(\frac{dy}{dt} = y - 1\):</p>
+<ul>
+<li>The function is \(f(y) = y - 1\).</li>
+<li>Critical point at \(y = 1\).</li>
+<li><strong>Behavior:</strong>
+<ul>
+<li>If \(y &lt; 1 \implies y' &lt; 0\) (decreasing away from 1).</li>
+<li>If \(y &gt; 1 \implies y' &gt; 0\) (increasing away from 1).</li>
+</ul>
+</li>
+<li><strong>Conclusion:</strong> The equilibrium \(y \equiv 1\) is <strong>unstable</strong>.</li>
+</ul>
+</div>
+<div class="example-box">
+<h3>Example 2: Semi-stability</h3>
+<p>Given \(y' = y(y - 1)^2\):</p>
+<ul>
+<li>Critical points at \(y = 0\) and \(y = 1\).</li>
+<li><strong>Testing Points:</strong>
+<ul>
+<li>\(y = -1 \implies y' = (-1)(-2)^2 = -4\) (Negative / Away from 0).</li>
+<li>\(y = 0.5 \implies y' = (0.5)(-0.5)^2 = 0.125\) (Positive / Toward 1).</li>
+<li>\(y = 2 \implies y' = (2)(1)^2 = 2\) (Positive / Away from 1).</li>
+</ul>
+</li>
+<li><strong>Conclusion:</strong> \(y = 0\) is <strong>unstable</strong>, and \(y = 1\) is <strong>semi-stable</strong>.</li>
+</ul>
+</div>
+<div class="example-box">
+<h3>Example 3: Logistic Form</h3>
+<p>Given \(y' = 3y(2 - y)\):</p>
+<ul>
+<li>Critical points at \(y = 0\) and \(y = 2\).</li>
+<li>Solution curves move "toward" \(y = 2\) from both sides (above and below).</li>
+<li><strong>Conclusion:</strong> \(y = 0\) is <strong>unstable</strong>; \(y = 2\) is <strong>stable</strong>.</li>
+</ul>
+</div>
+<div class="example-box">
+<h3>Example 4: Complex Polynomial</h3>
+<p>Given \(\frac{dy}{dt} = (y - 1)(y + 2)(y^2 - 9)\):</p>
+<p>Critical points are found at \(y = 1, -2, -3, 3\). Their classifications are as follows:</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Critical Point (\(y\))</th>
+<th scope="col">Classification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>Unstable</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Stable</td>
+</tr>
+<tr>
+<td>-2</td>
+<td>Unstable</td>
+</tr>
+<tr>
+<td>-3</td>
+<td>Stable</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</main><footer>
+<p><em>Note: Visual phase diagrams and slope fields help confirm these classifications by showing the flow of \(y(t)\) over time.</em></p>
+</footer></body></html>

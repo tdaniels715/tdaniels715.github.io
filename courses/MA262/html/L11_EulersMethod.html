@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture 11: Euler's Method (Numerical Methods)</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+        h1, h2, h3 {
+            color: #003366;
+        }
+        section {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 20px;
+        }
+        .note-box {
+            background-color: #f9f9f9;
+            border-left: 5px solid #003366;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 5px;
+        }
+    </style>
+</head><body><header>
+<h1>Numerical Methods: Euler's Method</h1>
+<p><em>Lecture 11 Notes</em></p>
+</header><main>
+<section aria-labelledby="intro-ode">
+<h2 id="intro-ode">Introduction to ODE Solutions</h2>
+<p>A given Ordinary Differential Equation (ODE) defined as:</p>
+<p>$$\frac{dy}{dx} = f(x, y)$$</p>
+<p>determines a solution curve \( y = g(x) \) containing points such as \( (x_0, y(x_0)) \) and \( (x_i, y(x_i)) \). This represents the "true" solution curve \( (x, g(x)) \).</p>
+<div class="note-box" role="note">
+<p><strong>The Problem:</strong> Finding exact solutions for ODEs (and thereby finding outputs \( y(x) \)) is often lengthy, difficult, or impossible.</p>
+<p><strong>The Solution:</strong> In these cases, we use <strong>numerical methods</strong> to approximate solutions and outputs.</p>
+</div>
+</section>
+<section aria-labelledby="eulers-method">
+<h2 id="eulers-method">Euler's Method ("Tangent Line Method")</h2>
+<p>Given an Initial Value Problem (IVP) consisting of:</p>
+<ul>
+<li>A known ODE: \(\frac{dy}{dx} = f(x, y)\)</li>
+<li>A "true" data point: \((x_0, y_0)\)</li>
+<li>A target input \( x \), for which we want to find the output \( y(x) \) (the particular "true" value).</li>
+</ul>
+<h3>The Algorithm</h3>
+<ol>
+<li><strong>Specify Step Size:</strong> Choose a step size \( h \).</li>
+<li><strong>Step 1:</strong>
+<ul>
+<li>Set \( x_1 = x_0 + h \)</li>
+<li>Calculate \( y_1 = y_0 + f(x_0, y_0)h \)</li>
+<li><em>Check:</em> If \( x_1 = x \) (target), then STOP. \( y_1 \approx y(x) \). Otherwise, continue.</li>
+</ul>
+</li>
+<li><strong>Step 2:</strong>
+<ul>
+<li>Set \( x_2 = x_1 + h \)</li>
+<li>Calculate \( y_2 = y_1 + f(x_1, y_1)h \)</li>
+<li>This creates the point \( (x_2, y_2) \).</li>
+</ul>
+</li>
+<li><strong>General Iteration:</strong>
+<p>Continue until \( x_n = \text{target } x \), where:</p>
+<p>$$x_n = x_{n-1} + h$$</p>
+<p>$$y_n = y_{n-1} + f(x_{n-1}, y_{n-1})h$$</p>
+<p>The resulting \( y_n \) should approximate the true value \( y(x_n) \).</p>
+</li>
+</ol>
+</section>
+<section aria-labelledby="assignments">
+<h2 id="assignments">Assignments &amp; Review</h2>
+<p><strong>For Monday 2/9:</strong></p>
+<ul>
+<li>Read Notes [L12]: Review of Linear Systems.</li>
+<li>Read one or two examples of 3-variable systems in Textbook Section 3.1.</li>
+</ul>
+</section>
+</main></body></html>

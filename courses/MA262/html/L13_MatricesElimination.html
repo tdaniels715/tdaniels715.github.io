@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrices and Elimination - Lecture Notes</title>
+    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #f8f9fa;
+        }
+        section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .matrix-container {
+            overflow-x: auto;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #fff;
+        }
+        .note {
+            border-left: 4px solid #3498db;
+            padding-left: 1rem;
+            font-style: italic;
+            margin: 1rem 0;
+        }
+        .step {
+            font-weight: bold;
+            color: #2980b9;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 2rem 0;
+        }
+    </style>
+</head><body><header>
+<h1>Matrices and Elimination</h1>
+<p><strong>Section:</strong> 3.2 - 3.3</p>
+</header>
+<section id="echelon-form">
+<h2>Echelon Form and Row Operations</h2>
+<p>A matrix is in <strong>Echelon Form (EF)</strong> if:</p>
+<ul>
+<li>Entries below all pivots are 0.</li>
+<li>Any rows of all 0s are moved to the bottom.</li>
+<li>The first non-zero entry in a row is the <strong>pivot</strong>.</li>
+</ul>
+<h3>Elementary Row Operations</h3>
+<ol>
+<li>Swap two rows: \(R_i \leftrightarrow R_j\)</li>
+<li>Scale a row: \(R_i \to c \cdot R_i\)</li>
+<li>Add a copy of one row to another: \(R_i \to R_i + c \cdot R_j\)</li>
+</ol>
+<div class="matrix-container">
+<p><strong>Example Reduced Echelon Form (REF):</strong></p>
+$ \begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 2 &amp; 2 &amp; 1 \\ 0 &amp; 1 &amp; \frac{1}{2} &amp; 0 &amp; -4 &amp; -2 \\ 0 &amp; 0 &amp; 1 &amp; -3 &amp; -2 &amp; 2 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \end{bmatrix} $</div>
+<p>REF requirements: Must be in EF, all pivots scaled to 1, and entries above and below pivots are 0.</p>
+</section>
+<hr aria-hidden="true">
+<section id="gaussian-elimination">
+<h2>Method of (Gaussian) Elimination</h2>
+<ol>
+<li><span class="step">Step I: Eliminate</span> variables top-down using row operations until the matrix is in Echelon Form.</li>
+<li><span class="step">Step II: Substitute</span> variables bottom-up (back substitution).</li>
+</ol>
+<h3>2x2 Example</h3>
+<p>System of equations:</p>
+$$ \begin{cases} x + 3y = 9 \\ 2x + y = 8 \end{cases} \Rightarrow \text{Augmented Matrix: } \begin{bmatrix} 1 &amp; 3 &amp; | &amp; 9 \\ 2 &amp; 1 &amp; | &amp; 8 \end{bmatrix} $$
+<p>Operation: \(R_2 \to R_2 - 2R_1\)</p>
+$$ \begin{bmatrix} 1 &amp; 3 &amp; | &amp; 9 \\ 0 &amp; -5 &amp; | &amp; -10 \end{bmatrix} $$
+<p>Bottom-up substitution:</p>
+<ul>
+<li>\(-5y = -10 \Rightarrow y = 2\)</li>
+<li>\(x + 3(2) = 9 \Rightarrow x = 3\)</li>
+</ul>
+<p>Solution: \((x, y) = (3, 2)\)</p>
+</section>
+<hr aria-hidden="true">
+<section id="free-variables">
+<h2>Free Variables and General Solutions</h2>
+<p>If a column does not contain a pivot, the corresponding variable is a <strong>free variable</strong>. This lead to infinitely many solutions.</p>
+<h3>Example with Free Variable</h3>
+<p>Resulting Echelon Form:</p>
+$$ \begin{bmatrix} 1 &amp; -3 &amp; 2 &amp; | &amp; 5 \\ 0 &amp; 1 &amp; 4 &amp; | &amp; 7 \\ 0 &amp; 0 &amp; 0 &amp; | &amp; 0 \end{bmatrix} $$
+<p>\(z\) has no pivot, so it is <strong>free</strong>. Let \(z = t\).</p>
+<ul>
+<li>\(y + 4t = 7 \Rightarrow y = 7 - 4t\)</li>
+<li>\(x - 3(7 - 4t) + 2t = 5 \Rightarrow x = 26 - 14t\)</li>
+</ul>
+<p><strong>Vector Form Solution:</strong></p>
+$$ \begin{bmatrix} x \\ y \\ z \end{bmatrix} = \begin{bmatrix} 26 \\ 7 \\ 0 \end{bmatrix} + t \begin{bmatrix} -14 \\ -4 \\ 1 \end{bmatrix} $$</section>
+<hr aria-hidden="true">
+<section id="summary-outcomes">
+<h2>Summary of System Outcomes</h2>
+<table aria-label="Summary of solution types based on pivots">
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pivot in every column (except augmented)</td>
+<td>Single / Unique Solution</td>
+</tr>
+<tr>
+<td>Any free variables</td>
+<td>Infinitely many solutions</td>
+</tr>
+<tr>
+<td>Pivot in the last (augmented) column (e.g., [0 0 | 1])</td>
+<td>No solution (Inconsistent)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<footer>
+<p><em>Note: Next session will continue with further examples of back substitution.</em></p>
+</footer></body></html>
