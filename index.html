@@ -7,13 +7,12 @@
 
     <style>
         :root {
-            /* palette */
             --backdrop:   #ebe5d5;   /* desk behind the cards */
             --paper:      #fbf9f4;
             --card:       #f9f8f4;
             --ink:        #2A2924;
             --ink-soft:   #58554C;
-            --accent:     #33506E;   /* ink-blue, links & headings */
+            --accent:     #33506E;
             --accent-hi:  #A9824C;   /* muted brass, hover/press   */
             --hairline:   #D8D2C2;
             --border-old: #adaa9f;
@@ -23,7 +22,6 @@
             --nice-green: #0B7005;
             --card-border: #CFC5A8;
 
-            /* type */
             --font-display: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
             --font-body:    "Palatino Linotype", Palatino, Georgia, serif;
             --font-mono:    "JetBrains Mono", "Courier New", monospace;
@@ -42,6 +40,7 @@
             color: var(--ink);
             line-height: 1.5;
             background-color: var(--backdrop);
+            
             /* faint woven texture standing in for a desk surface, no image needed */
             background-image:
                 repeating-linear-gradient(45deg, rgba(0,0,0,0.025) 0, rgba(0,0,0,0.025) 1px, transparent 1px, transparent 6px),
@@ -130,9 +129,8 @@
             justify-content: space-between;
             flex-wrap: wrap;
             
-            /* The magic constraints: */
-            max-width: 620px; /* Adjust this value to your liking */
-            margin: 0 auto;   /* Centers the group once it hits the max-width */
+            max-width: 620px; 
+            margin: 0 auto;
         }
 
         .profile img.headshot {
@@ -336,20 +334,6 @@
             font-size: 0.9rem; 
         }
         
-        /* ========== responsive ========== */
-        /* @media (max-width: 480px) {
-            .profile { 
-                flex-direction: column; 
-                align-items: center; 
-                text-align: center; 
-            }
-            .contact { 
-                text-align: left; 
-            }
-            .button-row { 
-                justify-content: center; 
-            }
-        } */
         @media (max-width: 580px) {
             /* Change .profile to .profile-inner */
             .profile-inner { 
@@ -365,7 +349,7 @@
                 justify-content: center; 
             }
         }
-        /* ---------- icon system (mask-image, works with `currentColor`) ---------- */
+        /* ---------- icon system ---------- */
 
         .icon {
             display: inline-block;
@@ -412,7 +396,7 @@
         /* 2. Set up the list items */
         ul.diamond-list li {
         position: relative;
-        /* padding-left: 1.5em; Creates space for the diamond */
+        /* padding-left: 1.5em; */
         /* margin-bottom: 0.5em; */
         }
 
@@ -428,10 +412,14 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
 </head>
+
+<!-- ==================== -->
+<!-- BODY -->
+<!-- ==================== -->
 <body>
 
 <div class="page">
-    <!-- ========== Profile / header ========== -->
+    <!-- ========== Profile/Header ========== -->
     <header class="profile card">
     <div class="profile-inner">
         <img class="headshot" src="./pictures/headshot.jpg">
@@ -471,20 +459,29 @@
     </header>
 
     <!-- ========== Research Interests ========== -->
-    <section class="card" id="interests">
+    <!-- <section class="card" id="interests">
         <h2>Research Interests</h2>
         <p>
             My current areas of work include analytic number theory, integer partitions, and
-            q-series. For my PhD I was co-advised by Trevor Wooley and Ben McReynolds at Purdue
-            University, and in April 2024 I defended my thesis
-            <em>The Asymptotics of Some Signed Partition Numbers</em>.
+            q-series. 
+        </p>
+    </section> -->
+    <section class="card" id="interests">
+        <h2>About</h2>
+        <p>
+            Math PhD with expertise in Asymptotic Analysis, and significant background and experience in Spectral Geometry, Mathematical Physics, and programming. Currently learning Data Science and Machine Learning&mdash;my background is helping me make rapid progress. Looking for roles in Applied Math, Data Science, Simulation, and Machine Learning.
+        </p>
+
+        <p>
+            For my PhD I was co-advised by Trevor Wooley and Ben McReynolds at Purdue
+            University, and in April 2024 I defended my thesis <em>The Asymptotics of Some Signed Partition Numbers</em>.
         </p>
     </section>
 
     <!-- ========== Publications ========== -->
     <section id="publications" class="card">
         <h2>Publications</h2>
-        <!-- <hr class="rule"> -->
+        
         <ul class="pub-list diamond-list">
             <li>
                 <div>
@@ -579,7 +576,6 @@
                 <figcaption>Two sketches of me teaching, done by some students.</figcaption>
             </figure>
         </div>
-
         
         <p>
             In particular, I have instructed courses in calculus, differential equations, and
