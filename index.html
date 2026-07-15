@@ -2,56 +2,187 @@
 <html>
 
 <head>
+    <!-- <link rel="stylesheet" type="text/css" href="td_css.css"> -->
 
-  <!-- <link rel="icon" href="./pictures/icon.png"> -->
-  <link rel="stylesheet" type="text/css" href="td_css.css">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <!-- MathJax Latex Script-->
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
 
-  <!-- MathJax Latex Script-->
-  <script type="text/javascript" async
-    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-  </script>
+    <title>Taylor Daniels' Homepage</title>
 
-
-
-  <title>Taylor Daniels' Homepage</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="Taylor%20Daniel%27s%20Homepage_files/bootstrap.css">
-  <script src="Taylor%20Daniel%27s%20Homepage_files/jquery.js"></script>
-  <script src="Taylor%20Daniel%27s%20Homepage_files/bootstrap.js"></script>
-  
-<style>
-body{
-	font-family: Palatino;
-	background-image: url("./pictures/desk_new.jpg");
-	background-repeat: repeat;
-	background-size: 100% auto;
-	background-attachment: fixed;
-}
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.imgContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #ccc;
-}
-img {
-  max-width: 100%;
-  max-height:100%;
-}
+    <style>
 
-.text {
-  font-size: 20px;
-  padding-left: 20px;
-}
-</style>
+        hr {
+            margin-top:-15px;
+        }
+        .container {
+            width: 300px;
+            margin: auto;
+        }
+        .customHr {
+            width: 95%
+            font-size: 1px;
+            color: rgba(0, 0, 0, 1);
+            line-height: 1px;
+
+            background-color: grey;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        #footer{
+            margin:auto;
+            margin-top: 20px;
+            max-width: 530px;
+            width:80%;
+
+            text-align: center;
+            background-image: url("./pictures/texture2.jpg");
+            background-repeat: repeat;
+            border: 5px solid #D6D6C2;
+        }
+
+
+        #wrapper {
+            width: 98.5%;
+            box-sizing: border-box;
+            max-width: 900px;
+            background-image: url("./pictures/texture2.jpg");
+            background-repeat: repeat;
+            border: 5px solid #D6D6C2;
+            margin: 0 auto;
+            margin-top:50px;
+            overflow:auto;
+
+        }
+
+        #wrapper_master{
+            width:98.5%;
+            box-sizing: border-box;
+            height: 100%;
+            margin: 0 auto;
+            margin-top:50px;
+            overflow:auto;
+        }
+
+        #content {
+            width: 100%;
+            min-width: 300px;
+            background: rgba(0,0,0,0.0);
+            overflow: auto;
+        }
+
+        #sidebar {
+            width: 90%;
+            height: 80%;
+            margin-left: 5%;
+            margin-top:20px;
+            background: rgba(0,0,0,0);
+        }
+
+        #first {
+            width: 50%;
+            float: left;
+            height: 270px;
+        }
+
+        #second {
+            width: 50%;
+            float: left;
+            height: 270px;
+        }
+
+        #cleared {
+        clear: both;
+        }
+
+        body{
+            font-family: Palatino;
+            background-image: url("./pictures/desk_new.jpg");
+            background-repeat: repeat;
+            background-size: 100% auto;
+            background-attachment: fixed;
+        }
+
+        ul {
+        list-style: none;
+        padding-left: 0;
+        }
+
+        ul li {
+        padding-left: 25px;
+        text-indent: -25px;
+        }
+
+        ul li:before {
+        content: "\2228";
+        padding-right: 5px;
+        }
+
+        <!-- @media screen and (max-width: 650px){
+            #wrapper_master {
+                margin: 0 auto;
+                width: 100%;
+                max-width: 400px;
+            }
+
+            #sidebar{display: block;
+                margin: auto;
+                margin-top: 10px;
+                width: 100%;
+                box-sizing: border-box;
+                height: 20%;
+            }
+            #content{
+                box-sizing: border-box;
+                max-width: 1000px;
+                width: 99.5%;
+            }
+            .img1{
+                height: 200px;
+            }
+            body{
+                background-image: url("./pictures/fractal.jpg");
+            }
+        } -->
+
+        body{
+            font-family: Palatino;
+            background-image: url("./pictures/desk_new.jpg");
+            background-repeat: repeat;
+            background-size: 100% auto;
+            background-attachment: fixed;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .imgContainer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ccc;
+        }
+
+        img {
+            max-width: 100%;
+            max-height:100%;
+        }
+
+        .text {
+            font-size: 20px;
+            padding-left: 20px;
+        }
+    </style>
 </head>
 
 
@@ -68,24 +199,20 @@ img {
     <!-- ============================== -->
     <div id="sidebar">
     <div class='container', style="width:95%">
-    <div id="first", style="text-align:left;margin-left:5%">
-    <img src="./pictures/headshot.jpg",
-        style="
-        border: 2px solid #e7e7e7;
-        max-width:220px;
-        max-height:260px;
-        ">
-    </div>
+        <div id="first", style="text-align:left;margin-left:5%">
+            <img src="./pictures/headshot.jpg",
+                style="
+                border: 2px solid #e7e7e7;
+                max-width:220px;
+                max-height:260px;
+                ">
+        </div>
         <div id="second", style="margin-right:10px;text-align:left;">
                 <h2> Taylor Daniels </h2>
-                <h4> Mathematics Dept., Purdue Univ. Indianapolis </h4>
-                <h5> Visiting Assistant Professor </h5>
+                <h4> Indianapolis, IN </h4>
             <div id="about", style="display:block;">
                 <dl>
-                    <dt> Office: ET 314 </dt>
-                    <dt> Email: daniel84 at purdue dot edu </dt>
-                    <br>
-                    <dt> <a href="./docs/tdaniels_resume.pdf">Resume</a> </dt>
+                    <dt> <a href="./docs/TDanielsResume.pdf">Resume</a> </dt>
                     <dt> <a href="./docs/research.pdf">Research Statement</a></dt>
                 </dl>
             </div>
@@ -97,12 +224,6 @@ img {
 
 <!-- Content ------------------------------------------------>
 <div id="content">
-
-
-    <!-- Current Courses -
-        <div id="courses", style="margin-left:5%; margin-right:5%; display:block;">
-            
-        </div> -->
 
 
     <!-- ============================== -->
@@ -179,9 +300,6 @@ img {
                 height: auto; 
                 border-radius: 8px;
                 ">
-            <!-- <figcaption style="margin-top: 10px; font-style: italic; color: #555; font-family: sans-serif;">
-                A sketch of me teaching, done by a student. (Fall 2025)
-            </figcaption> -->
             </figure>
             <figure style="
                 width: 50%; 
@@ -209,7 +327,6 @@ img {
 
     </div> <!--/content-->
     <div id="cleared"></div>
-    <!-- <p> </p> -->
 
     </div><!--/wrapper-->
     

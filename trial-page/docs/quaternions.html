@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<link rel="icon" href="./pictures/icon.png">
+<link rel="stylesheet" type="text/css" href="td_css.css">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<!-- MathJax Latex Script-->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<style>
+#content{
+	width: 95%;
+	float: left;
+	min-width: none;
+	max-width: none;
+	padding-left: 10px;
+}
+</style>
+
+
+
+<title>Taylor Daniel's Homepage</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+<link rel="stylesheet" href="Taylor%20Daniel%27s%20Homepage_files/bootstrap.css">
+<script src="Taylor%20Daniel%27s%20Homepage_files/jquery.js"></script>
+<script src="Taylor%20Daniel%27s%20Homepage_files/bootstrap.js"></script>
+
+
+
+</head>
+
+
+
+
+
+
+
+<!--<body onload = "startTimer()">-->
+<body>
+
+<div id="wrapper_master">
+<div id="wrapper">
+  
+<!------------------------------- Sidebar ------------------------------------------->  
+  
+  
+  
+<!-------------------------------- Content ------------------------------------------------>
+  <div id="content">
+			<h3> Notes on The Quaternions and \(SU(2)\)</h3>
+
+	<p> The following short write-up is largely a summary of the <a href="https://qchu.wordpress.com/2011/02/12/su2-and-the-quaternions/">blog post</a> by Qiaochu Yuan of similar title. In this I will focus on a few different aspect of Qiaochu's write up as well as provide a little clarification on some details. </p>
+
+	<p>The quaternions \(\mathbb{H}\) are the familiar 4-dimensional \(\mathbb{R}\)-algebra with basis \(1,\bf{i},\bf{j},\bf{k}\), with \(1\) as our unit and the multiplication of \(\bf{i,j,k}\) given by the ``cross-product'' chart. </p>
+	
+	<p>We can define an adjoint operation \(\dagger\) on \(\mathbb{H}\) in a nice way generalizing complex conjugation, given by 
+	$$ q = t1 + x\textbf{i} + y\textbf{j} + z\textbf{k} \quad\quad q^\dagger \equiv t1 - x\textbf{i} - y\textbf{j} - z\textbf{k}$$
+	This allows us to define a norm, namely \( |q|^2 \equiv qq^\dagger \), which gives the familiar
+		$$ |q|^2 = t^2 + x^2 + y^2 + z^2$$ 
+	It is not difficult but tedious to check that our norm is multiplicative, as we would expect. Now we are ready to discuss how \(SU(2)\) fits into the picture. </p>
+	
+	<p> The group \(SU(2)\) is the set of \(2\times 2\) unitary (that is, \(MM^\dagger = M^\dagger M = I\)) \(\mathbb{C}\) matrices with determinant 1, namely 
+	$$ SU(2) \equiv \left\{ \left( \begin{array}{cc} \alpha & -\bar\beta \\ \beta & \bar\alpha \end{array} \right) : |\alpha|^2 + |\beta|^2 = 1 \right\}$$
+	 
+	 We now embed \(SU(2)\) into the quaternions. Picking an element of \(SU(2)\) is equivalent to picking the two complex numbers \(\alpha,\beta\) above, and given, \(\alpha = t1+zi, \beta = y1 + xi\), we can simply consider this to be a 4-tuple of real numbers and then map them \((x,y,z,t) \mapsto t1 + x\textbf{i} + y\textbf{j} + z\textbf{k} \). We could, but won't verify that this is a bijective homomorphism of \(SU(2)\) onto the norm-1 quaternions. Thus herein when we speak of an element of \(SU(2)\), we will regard it as a norm 1 quaternion.  
+	 </p>
+	 <p>
+	 Turning our attention to the quaternions themselves, we make some observations. First, \(\mathbb{H}\) can be decomposed \(\mathbb{H} = \mathop{span}(1) \oplus \mathop{span}(\textbf{i,j,k})\). We note that this is a specific case of a general fact about \(C^*\) algebras, namely that any \(C^*\) algebra can be decomposed as the direct sum of the Hermitian subspace and the anti-Hermitian subspace. This is seen at once by writing any element
+	 $$ q = \frac{q+q^\dagger}{2} + \frac{q-q^\dagger}{2} $$
+	 
+	 Next, given some \(q \in \mathbb{H}\), we consider its "adjoint" action on \(\mathbb{H}\)
+	 $$ \mathrm{Ad}\,q : \mathbb{H} \to \mathbb{H}, \quad\quad \zeta \mapsto q\zeta q^{-1}$$
+	 
+	 A quick check reveals that if \(\zeta\) is Hermitian or anti-Hermitian, then \(q\zeta q^{-1}\) is still Hermitian or anti-Hermitian respectively. Thus the adjoint action of a given \(q\) maps the subspaces to themselves, and thus we might consider elements of \(\mathbb{H}\) or in particular \(SU(2)\) as acting on the space \(\mathrm{span}(\textbf{i,j,k})\). Since the norm is multiplicative, we find that this action preserves norm and thus we have arrived at an action of \(SU(2)\) on \(\mathrm{span}(\textbf{i,j,k})= \mathbb{R}^3\), and even more an action of the 2-sphere to the 2-sphere, \(S^2\),that is, an element of \(SO(3)\) which we will find to be our rotation. 
+	 </p>
+	
+	Given our \(q\), we can directly verify that \(\mathrm{Im}(q)\equiv (1/2)(q-q^\dagger)\) is fixed under the mapping \(\mathrm{Ad}\,q\), and thus the \(S^2\) point \( \textbf{h}_q \equiv \frac{\mathrm{Im}(q)}{|\mathrm{Im}(q)|}\) is our axis of rotation. Given our \(SU(2)\) element we express it as 
+	$$ q = \cos\theta 1 +  \sin\theta \textbf{h}_q $$ for some \(\theta\). A quick check reveals that \(\textbf{h}_q^2 = -1\), and with this we can simply observe that our quaternion norm coincides with the complex norm, making valid the exponential formula
+	$$ q = \cos\theta 1 + \sin\theta \textbf{h}_q = e^{\textbf{h}_q \theta} $$
+	This is wonderful since we can now define 
+	$$ \eta(\theta) \equiv \cos\theta 1 + \sin\theta \textbf{h}_q = e^{\textbf{h}_q \theta} $$
+	and be assured that it is a continuous homomorphism in \(\theta\). In effect what this is is a homomorphism of the copy of \(S^1 \subset SU(2)\) associated with \(q\), explicitly it is \(e^{it}q\) where \(t \in [0,2\pi]\).	
+					
+					
+					
+			<p></p>
+			
+	
+	
+<!-- Content-->	</div>
+			
+  <div id="cleared"></div>
+
+<p> </p>
+
+
+<!--wrapper--></div>
+
+
+<!------ footer ----------------------------------------------->
+<div id="footer">
+Thanks to Stackexchange and <a href="https://www.w3schools.com/">W3Schools<a> for helping me make this. <p></p> <a href="https://www.mathjax.org">
+    <img title="Powered by MathJax"
+    src="https://www.mathjax.org/badge/badge.gif"
+    border="0" alt="Powered by MathJax" />
+
+
+</div>
+
+</div><!--Wrapper master-->
+
+<script>
+function mouseDown(){
+ document.body.style.opacity = "0";
+}
+function mouseUp(){
+ document.body.style.opacity = "1";
+}
+
+function myFunction(strin) {
+    var x = document.getElementById(strin);
+		if (x.style.display === 'none') {
+				x.style.display = 'block';
+				}
+		else { x.style.display = 'none'; }
+}
+</script>
+
+
+
+</body>
+
+</html>

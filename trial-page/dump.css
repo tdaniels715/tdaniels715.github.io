@@ -1,0 +1,71 @@
+        /* ========== publications ========== */
+        /* .pub-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .pub-list li {
+            display: flex;
+            gap: 0.85rem;
+            align-items: flex-start;
+            padding: 0.85rem 0;
+            border-bottom: 1px solid var(--hairline);
+        }
+        .pub-list li:last-child { border-bottom: none; } */
+
+        /* ========== Young Diagram ========== */
+        /* .partition-glyph {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            margin-top: 0.3rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 2px;
+        }
+        .partition-glyph span {
+            background: var(--accent-hi);
+            border-radius: 1px;
+            opacity: 0.85;
+        }
+        .pub-note {
+            display: block;
+            margin-top: 0.3rem;
+            font-size: 0.9rem;
+            color: var(--ink-soft);
+        }
+        .pub-note a { font-size: 0.9rem; } */
+
+        /* ========== teaching ========== */
+        .course-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .sketches {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+        .sketches figure {
+            margin: 0;
+            width: 220px;
+            text-align: center;
+        }
+        .sketches img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius);
+            border: 1px solid var(--hairline);
+        }
+        .sketches figcaption {
+            margin-top: 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--ink-soft);
+            font-style: italic;
+        }

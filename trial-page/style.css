@@ -1,0 +1,279 @@
+/* ============================================================
+   Taylor Daniels — homepage styles
+   ============================================================ */
+
+:root {
+    /* palette */
+    --backdrop:   #DDD4BC;   /* desk behind the cards */
+    --paper:      #EFEAE0;
+    --card:       #F7F4EC;
+    --ink:        #2A2924;
+    --ink-soft:   #58554C;
+    --accent:     #33506E;   /* ink-blue, links & headings */
+    --accent-hi:  #A9824C;   /* muted brass, hover/press   */
+    --hairline:   #D8D2C2;
+    --card-border: #CFC5A8;
+
+    /* type */
+    --font-display: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+    --font-body:    "Palatino Linotype", Palatino, Georgia, serif;
+    --font-mono:    "JetBrains Mono", "Courier New", monospace;
+
+    --radius: 8px;
+    --max-width: 780px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--ink);
+    line-height: 1.6;
+    background-color: var(--backdrop);
+    /* faint woven texture standing in for a desk surface, no image needed */
+    background-image:
+        repeating-linear-gradient(45deg, rgba(0,0,0,0.025) 0, rgba(0,0,0,0.025) 1px, transparent 1px, transparent 6px),
+        repeating-linear-gradient(-45deg, rgba(255,255,255,0.25) 0, rgba(255,255,255,0.25) 1px, transparent 1px, transparent 6px);
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color .15s ease, color .15s ease;
+}
+a:hover {
+    color: var(--accent-hi);
+    border-bottom-color: currentColor;
+}
+
+hr.rule {
+    border: none;
+    border-top: 1px solid var(--hairline);
+    margin: 0.4rem 0 1.2rem;
+}
+
+/* ---------- page shell ---------- */
+
+.page {
+    max-width: var(--max-width);
+    margin: 3rem auto 4rem;
+    padding: 2rem 1.5rem 2.5rem;
+    background: var(--paper);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    box-shadow: 0 12px 28px rgba(30, 26, 15, 0.18);
+}
+
+/* ---------- individual "cards" ---------- */
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    box-shadow: 0 3px 8px rgba(30, 26, 15, 0.08);
+    padding: 1.75rem 1.85rem;
+    margin-bottom: 1.75rem;
+}
+
+/* ---------- header / sidebar-turned-header ---------- */
+
+.profile {
+    display: flex;
+    gap: 1.75rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 2.75rem;
+}
+
+.profile img.headshot {
+    width: 160px;
+    height: auto;
+    border: 2px solid var(--hairline);
+    border-radius: var(--radius);
+    flex-shrink: 0;
+}
+
+.profile-text {
+    min-width: 240px;
+    flex: 1;
+}
+
+.profile-text h1 {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    letter-spacing: 0.02em;
+    margin: 0 0 0.15rem;
+}
+
+.profile-text .dept {
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+}
+
+.profile-text .role {
+    margin: 0 0 0.9rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent-hi);
+}
+
+.contact {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin-bottom: 1rem;
+}
+.contact div { margin-bottom: 0.15rem; }
+
+/* ---------- raised buttons (signature element) ---------- */
+
+.button-row {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.btn-raised {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    padding: 0.55rem 1rem;
+    background: var(--card);
+    color: var(--accent);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    box-shadow:
+        0 1px 0 rgba(255,255,255,0.6) inset,
+        0 2px 0 var(--hairline),
+        0 4px 6px rgba(42,41,36,0.12);
+    transform: translateY(0);
+    transition: transform .12s ease, box-shadow .12s ease, color .12s ease;
+}
+
+.btn-raised:hover {
+    color: var(--accent-hi);
+    transform: translateY(-1px);
+    box-shadow:
+        0 1px 0 rgba(255,255,255,0.6) inset,
+        0 3px 0 var(--hairline),
+        0 6px 10px rgba(42,41,36,0.15);
+    border-bottom: none;
+}
+
+.btn-raised:active {
+    transform: translateY(1px);
+    box-shadow:
+        0 1px 0 rgba(255,255,255,0.4) inset,
+        0 1px 0 var(--hairline),
+        0 1px 3px rgba(42,41,36,0.15);
+}
+
+/* ---------- section scaffolding ---------- */
+
+section > h2 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    letter-spacing: 0.01em;
+    margin: 0 0 0.25rem;
+}
+
+/* ---------- publications ---------- */
+
+.pub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pub-list li {
+    display: flex;
+    gap: 0.85rem;
+    align-items: flex-start;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--hairline);
+}
+.pub-list li:last-child { border-bottom: none; }
+
+/* Young-diagram (partition) glyph — ties to the research area */
+.partition-glyph {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    margin-top: 0.3rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 2px;
+}
+.partition-glyph span {
+    background: var(--accent-hi);
+    border-radius: 1px;
+    opacity: 0.85;
+}
+
+.pub-note {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+}
+.pub-note a { font-size: 0.9rem; }
+
+/* ---------- teaching ---------- */
+
+.course-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.sketches {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+.sketches figure {
+    margin: 0;
+    width: 220px;
+    text-align: center;
+}
+.sketches img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--hairline);
+}
+.sketches figcaption {
+    margin-top: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    font-style: italic;
+}
+
+/* ---------- footer ---------- */
+
+footer {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    margin-top: 0.5rem;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 480px) {
+    .profile { flex-direction: column; align-items: center; text-align: center; }
+    .contact { text-align: left; }
+    .button-row { justify-content: center; }
+}

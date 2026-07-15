@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TRIAL Homepage</title>
+
+    <style>
+        :root {
+            /* palette */
+            --backdrop:   #DDD4BC;   /* desk behind the cards */
+            --paper:      #fbf9f4;
+            --card:       #f9f8f4;
+            --ink:        #2A2924;
+            --ink-soft:   #58554C;
+            --accent:     #33506E;   /* ink-blue, links & headings */
+            --accent-hi:  #A9824C;   /* muted brass, hover/press   */
+            --hairline:   #D8D2C2;
+            --border-old: #D6D6C2;
+            --border-old-pic: #e7e7e7;
+            --nice-blue:  #2E3092;
+            --nice-red:   #9F236C;
+            --nice-green: #0B7005;
+            --card-border: #CFC5A8;
+
+            /* type */
+            --font-display: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+            --font-body:    "Palatino Linotype", Palatino, Georgia, serif;
+            --font-mono:    "JetBrains Mono", "Courier New", monospace;
+
+            --radius: 4px;
+            --max-width: 780px;
+        }
+
+        * { 
+            box-sizing: border-box; 
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--font-body);
+            color: var(--ink);
+            line-height: 1.5;
+            background-color: var(--card);
+            /* faint woven texture standing in for a desk surface, no image needed */
+            background-image:
+                repeating-linear-gradient(45deg, rgba(0,0,0,0.025) 0, rgba(0,0,0,0.025) 1px, transparent 1px, transparent 6px),
+                repeating-linear-gradient(-45deg, rgba(255,255,255,0.25) 0, rgba(255,255,255,0.25) 1px, transparent 1px, transparent 6px);
+        }
+
+        h1 {
+            color: var(--nice-red);
+        }
+        
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color .15s ease, color .15s ease;
+        }
+        
+        a:hover {
+            color: var(--accent-hi);
+            border-bottom-color: currentColor;
+        }
+
+        figure {
+            width: 50%; 
+            max-width: 500px; 
+            margin: 20px auto; 
+            text-align: center;
+            border: 4px #ccc;
+        }
+
+        hr.rule {
+            /* border: none; */
+            border-top: 2px solid var(--hr-color);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-block-start: 0.5em;
+            margin-block-end: 0.5em;
+        }
+
+        /* ========== page shell ========== */
+        .page {
+            align-items: center;
+            max-width: var(--max-width);
+            margin: 1.0rem auto 1.0rem;
+            padding: 1.0rem;
+            /* background: var(--paper); */
+            background-image: url("./pictures/texture2.jpg");
+	        background-repeat: repeat;
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            box-shadow: 0 12px 28px rgba(30, 26, 15, 0.18);
+        }
+
+        /* ========== individual "cards" ========== */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            box-shadow: 0 3px 8px rgba(30, 26, 15, 0.08);
+            padding: 1.25rem 1.25rem 0.75rem 1.25rem;
+            margin-bottom: 1.0rem;
+        }
+
+        /* ========== profile card ========== */
+        .profile {
+            /* display: flex; */
+            gap: 1.75rem;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .profile-inner {
+            display: flex;
+            gap: 3.0rem;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            
+            /* The magic constraints: */
+            max-width: 620px; /* Adjust this value to your liking */
+            margin: 0 auto;   /* Centers the group once it hits the max-width */
+        }
+
+        .profile img.headshot {
+            width: 160px;
+            height: auto;
+            border: 2px solid var(--ink-soft);
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .profile-text {
+            min-width: 240px;
+            /* flex: 1; */
+        }
+
+        .profile-text h1 {
+            font-family: var(--font-display);
+            font-size: 1.9rem;
+            letter-spacing: 0.02em;
+            margin: 0 0 0.15rem;
+        }
+
+        .profile-text .loc {
+            margin: 0;
+            font-size: 1.05rem;
+            color: var(--ink-soft);
+        }
+
+        .profile-text .role {
+            margin: 0 0 0.9rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--accent-hi);
+        }
+        .contact {
+            font-size: 0.95rem;
+            color: var(--ink-soft);
+            margin-bottom: 1rem;
+        }
+
+        .contact div { 
+            margin-bottom: 0.15rem; 
+        }
+
+        /* ========== raised buttons ========== */
+        .button-row {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-top: 0.6rem;
+        }
+
+        .btn-raised {
+            display: inline-block;
+            font-size: 0.85rem;
+            padding: 0.25rem 0.50rem;
+            margin: 0.25rem;
+            background: #f7f4ec;
+            color: #345;
+            text-decoration: underline;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow:
+                0 1px 0 rgba(255,255,255,0.7) inset,
+                0 2px 0 #ccc,
+                0 3px 5px rgba(0,0,0,0.15);
+            transition: transform .12s ease, box-shadow .12s ease;
+        }
+
+        .btn-raised:hover {
+            transform: translateY(-1px);
+            box-shadow:
+                0 1px 0 rgba(255,255,255,0.7) inset,
+                0 3px 0 #ccc,
+                0 5px 8px rgba(0,0,0,0.18);
+        }
+
+        .btn-raised:active {
+            transform: translateY(1px);
+            box-shadow:
+                0 1px 0 rgba(255,255,255,0.4) inset,
+                0 1px 0 #ccc,
+                0 1px 2px rgba(0,0,0,0.15);
+        }
+
+        a .github-repo-card {
+            align-items: center;
+            align-self: stretch; 
+            border: 2px solid var(--pkmn-black);
+            background-color: var(--pkmn-yellow);
+            background-color: var(--bg-page); 
+            border-radius: 0px; 
+            box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.15); 
+            display: flex;
+            justify-content: center;
+            margin: 0px 0 0 0;
+            padding: 5px 5px;
+            page-break-inside: avoid;
+        }
+        a.repo-link {
+            align-items: center;
+            border-radius: 6px;
+            color: webkit-link;
+            cursor: pointer;
+            display: inline-flex;
+            font-size: 14px;
+            font-weight: 700;
+            gap: 10px; 
+            letter-spacing: 0.5px;
+            text-decoration: underline;
+            text-transform: uppercase;
+            transition: background-color 0.2s;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+        a.repo-icon {
+            color: black;
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 20px;
+        }
+        a.repo-header {
+            align-items: center;
+            color: #24292f;
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        /* ========== section scaffolding ========== */
+        section > h2 {
+            color: var(--nice-blue);
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            letter-spacing: 0.01em;
+            margin: 0 0 0.25rem;
+            border-bottom: 2px solid var(--nice-blue);
+        }
+
+        /* ========== footer ========== */
+        #footer {
+            /* display: flex; */
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 1.0rem;
+            color: var(--ink-soft);
+            margin: 0.5rem auto 0 auto;
+            padding: 0;
+            max-width: 250px;
+        }
+
+        #sketch {
+            width: 100%; 
+            height: auto; 
+            border-radius: 8px; 
+        }
+        /* ========== publications ========== */
+        .pub-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .pub-list li {
+            display: flex;
+            gap: 0.85rem;
+            align-items: flex-start;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid var(--hairline);
+        }
+        .pub-list li:last-child { border-bottom: none; }
+
+        /* ========== Young Diagram ========== */
+        .partition-glyph {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            margin-top: 0.3rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 2px;
+        }
+        .partition-glyph span {
+            background: var(--accent-hi);
+            border-radius: 1px;
+            opacity: 0.85;
+        }
+        .pub-note {
+            display: block;
+            margin-top: 0.3rem;
+            font-size: 0.9rem;
+            color: var(--ink-soft);
+        }
+        .pub-note a { font-size: 0.9rem; }
+        /* ========== responsive ========== */
+        /* @media (max-width: 480px) {
+            .profile { 
+                flex-direction: column; 
+                align-items: center; 
+                text-align: center; 
+            }
+            .contact { 
+                text-align: left; 
+            }
+            .button-row { 
+                justify-content: center; 
+            }
+        } */
+        @media (max-width: 580px) {
+            /* Change .profile to .profile-inner */
+            .profile-inner { 
+                flex-direction: column; 
+                align-items: center; 
+                text-align: center; 
+                gap: 1.0rem;
+            }
+            .contact { 
+                text-align: center; 
+            }
+            .button-row { 
+                justify-content: center; 
+            }
+        }
+        /* ---------- icon system (mask-image, works with `currentColor`) ---------- */
+
+        .icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            background-color: currentColor;
+            -webkit-mask-repeat: no-repeat;
+                    mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+                    mask-position: center;
+            -webkit-mask-size: contain;
+                    mask-size: contain;
+        }
+
+        .icon-github {
+            margin-right: 5px;
+            mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M12%20.297c-6.63%200-12%205.373-12%2012%200%205.303%203.438%209.8%208.205%2011.385.6.113.82-.258.82-.577%200-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422%2018.07%203.633%2017.7%203.633%2017.7c-1.087-.744.084-.729.084-.729%201.205.084%201.838%201.236%201.838%201.236%201.07%201.835%202.809%201.305%203.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93%200-1.31.465-2.38%201.235-3.22-.135-.303-.54-1.523.105-3.176%200%200%201.005-.322%203.3%201.23.96-.267%201.98-.399%203-.405%201.02.006%202.04.138%203%20.405%202.28-1.552%203.285-1.23%203.285-1.23.645%201.653.24%202.873.12%203.176.765.84%201.23%201.91%201.23%203.22%200%204.61-2.805%205.625-5.475%205.92.42.36.81%201.096.81%202.22%200%201.606-.015%202.896-.015%203.286%200%20.315.21.69.825.57C20.565%2022.092%2024%2017.592%2024%2012.297c0-6.627-5.373-12-12-12%22/%3E%3C/svg%3E");
+        }
+
+        .icon-email { 
+            mask-image: url("data:image/svg+xml,..."); 
+        }
+        
+        .linkedin-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            /* color: #0A66C2; */
+        }
+
+        .linkedin-button svg {
+            flex-shrink: 0;
+            color: #0A66C2;
+        }
+
+        /* 1. Strip the default formatting */
+        ul.diamond-list {
+        list-style-type: none; 
+        padding-left: 0;
+        margin: 0;
+        }
+
+        /* 2. Set up the list items */
+        ul.diamond-list li {
+        position: relative;
+        padding-left: 1.5em; /* Creates space for the diamond */
+        margin-bottom: 0.5em;
+        }
+
+        /* 3. Create the green diamond */
+        ul.diamond-list li::before {
+        content: "\25C6"; /* Unicode hex for solid diamond (◆) */
+        color: #28a745;   /* Solid green */
+        /* position: absolute;
+        left: 0;
+        top: 0;  */
+        }
+    </style>
+
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+</head>
+<body>
+
+<div class="page">
+    <!-- ========== Profile / header ========== -->
+    <header class="profile card">
+    <div class="profile-inner">
+        <img class="headshot" src="./pictures/headshot.jpg">
+
+        <div class="profile-text">
+            <h1>Taylor Daniels, PhD</h1>
+            <p class="loc">Indianapolis, IN</p>
+
+            <div class="contact">
+                Email: taylor.daniels715@gmail.com
+            </div>
+
+            <div class="button-row">
+                <a class="btn-raised" target="_blank" rel="noopener" href="./docs/tdaniels_resume.pdf">
+                    Resume
+                </a>
+                
+                <a class="btn-raised" target="_blank" rel="noopener" href="./docs/research.pdf">
+                    Research Statement
+                </a>
+            </div>
+
+            <div class="button-row">
+                <a class="btn-raised" target="_blank" rel="noopener" href="https://github.com/yourusername/your-repo-name">
+                    <span class="icon icon-github"></span>GitHub
+                </a>
+
+                <a class="btn-raised linkedin-button" target="_blank" rel="noopener" >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.114 20.452H3.558V9h3.556v11.452z"/>
+                    </svg>
+                    Linkedin
+                </a>
+            </div>
+        </div>
+    </div>
+    </header>
+
+    <!-- ========== Research Interests ========== -->
+    <section class="card" id="interests">
+        <h2>Research Interests</h2>
+        <p>
+            My current areas of work include analytic number theory, integer partitions, and
+            q-series. For my PhD I was co-advised by Trevor Wooley and Ben McReynolds at Purdue
+            University, and in April 2024 I defended my thesis
+            <em>The Asymptotics of Some Signed Partition Numbers</em>.
+        </p>
+    </section>
+
+    <!-- ========== Publications ========== -->
+    <section id="publications" class="card">
+        <h2>Publications</h2>
+        <!-- <hr class="rule"> -->
+        <ul class="pub-list diamond-list">
+            <li>
+                <span class="partition-glyph" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span style="background:transparent"></span>
+                    <span></span><span style="background:transparent"></span><span style="background:transparent"></span>
+                </span>
+                <div>
+                    T. Daniels, T. Huber, J. McLaughlin, D. Ye, <em>The p-dissection of product of
+                    quintuple products</em>;
+                    <a href="https://arxiv.org/abs/2603.04666">arXiv</a>
+                    <span class="pub-note">
+                        ∴ Mathematica notebook: <a href="./docs/pDissectionQuintuple.nb">pDissectionQuintuple.nb</a>
+                    </span>
+                </div>
+            </li>
+            <li>
+                <!-- <span class="partition-glyph" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span style="background:transparent"></span>
+                    <span></span><span style="background:transparent"></span><span style="background:transparent"></span>
+                </span> -->
+                <div>
+                    T. Daniels, <em>Periodic vanishings of the Legendre-17 signed partition
+                    numbers</em>;
+                    <a href="https://arxiv.org/abs/2603.02373">arXiv</a>
+                </div>
+            </li>
+            <li>
+                <span class="partition-glyph" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span style="background:transparent"></span>
+                    <span></span><span style="background:transparent"></span><span style="background:transparent"></span>
+                </span>
+                <div>
+                    T. Daniels, <em>Biasymptotics of the Möbius- and Liouville-signed partition
+                    numbers</em>, submitted; preprint:
+                    <a href="https://arxiv.org/abs/2310.10617">arXiv</a>, 38&nbsp;pp.
+                </div>
+            </li>
+
+            <li>
+                <span class="partition-glyph" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span style="background:transparent"></span>
+                    <span></span><span style="background:transparent"></span><span style="background:transparent"></span>
+                </span>
+                <div>
+                    T. Daniels, <em>Vanishing coefficients in two q-series related to
+                    Legendre-signed partitions</em>, Res. Number Theory <strong>10</strong> (2024),
+                    Paper No. 81, 12&nbsp;pp. <a href="https://doi.org/10.1007/s40993-024-00566-x">doi</a>
+                    <span class="pub-note">
+                        ∴ Mathematica notebook: <a href="./docs/vanishingCompanion.nb">vanishingCompanion.nb</a>
+                    </span>
+                </div>
+            </li>
+
+            <li>
+                <span class="partition-glyph" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span style="background:transparent"></span>
+                    <span></span><span style="background:transparent"></span><span style="background:transparent"></span>
+                </span>
+                <div>
+                    T. Daniels, <em>The Asymptotics of Some Signed Partition Numbers</em>,
+                    Doctoral Thesis, Aug. 2024. <a href="https://doi.org/10.25394/PGS.26364385.v1">doi</a>
+                </div>
+            </li>
+
+            <li>
+                <span class="partition-glyph" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span style="background:transparent"></span>
+                    <span></span><span style="background:transparent"></span><span style="background:transparent"></span>
+                </span>
+                <div>
+                    T. Daniels, <em>Legendre-signed partition numbers</em>, J. Math. Anal. Appl.
+                    <strong>542</strong> (2025), no. 1, Paper No. 128717, 40&nbsp;pp.
+                    <a href="https://doi.org/10.1016/j.jmaa.2024.128717">doi</a>
+                </div>
+            </li>
+
+            <li>
+                <span class="partition-glyph" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span style="background:transparent"></span>
+                    <span></span><span style="background:transparent"></span><span style="background:transparent"></span>
+                </span>
+                <div>
+                    T. Daniels, <em>Bounds on the Möbius-signed partition numbers</em>, Ramanujan
+                    J. <strong>65</strong> (2024), 81–123.
+                    <a href="https://doi.org/10.1007/s11139-024-00885-8">doi</a>
+                </div>
+            </li>
+
+            <li>
+                <span class="partition-glyph" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span style="background:transparent"></span>
+                    <span></span><span style="background:transparent"></span><span style="background:transparent"></span>
+                </span>
+                <div>
+                    T. Daniels, D. Smith-Tone, <em>Differential Properties of the HFE
+                    Cryptosystem</em>, Post-Quantum Cryptography — 6th Intl. Workshop, PQCrypto
+                    2014, Univ. of Waterloo, Waterloo ON, Canada; Sept. 2014.
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <!-- ========== Teaching ========== -->
+    <section id="teaching" class="card">
+        <h2>Teaching</h2>
+
+        <div class="course-links">
+            <a class="btn-raised" href="./courses/MA262-Spring26.html">Spring 2026 — MA 262 (Diff. Eq. and Lin. Alg.)</a><br>
+            <a class="btn-raised" href="./courses/MA262-Fall25.html">Fall 2025 — MA 262 (Diff. Eq. and Lin. Alg.)</a>
+        </div>
+
+        <figure>
+            <img id="sketch" src="./pictures/krish.png" alt="Sketch of Taylor Daniels teaching">
+        </figure>
+        <p>
+            I have been teaching and grading math for about 10 years now, and in Summer 2015 I
+            was an instructor in a Mandarin Chinese language-learning program for middle school
+            students. For my work as a grader/TA in Fall 2020, I was awarded one of the Math
+            Dept.'s Excellence in Teaching Awards.
+        </p>
+        <div>
+            <figure>
+                <img id="sketch" src="./pictures/sketch.png" alt="Sketch of Taylor Daniels teaching">
+                <figcaption>Two sketches of me teaching, done by some students.</figcaption>
+            </figure>
+        </div>
+
+        
+        <p>
+            In particular, I have instructed courses in calculus, differential equations, and
+            linear algebra; recitations in calculus, real analysis, and complex analysis; and
+            have graded for courses including real analysis (both real and complex), Galois
+            theory, and measure theory.
+        </p>
+    </section>
+
+    <div class="card" id="footer">
+        Updated July 2026
+    </div>
+
+</div>
+
+</body>
+</html>
