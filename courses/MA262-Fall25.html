@@ -2,59 +2,435 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MA262 (Fa'25)</title>
 
-<link rel="icon" href="../pictures/icon.png">
-<link rel="stylesheet" type="text/css" href="../td_css.css">
+    <style>
+        :root {
+            --backdrop:   #ebe5d5;   /* desk behind the cards */
+            --paper:      #fbf9f4;
+            --card:       #f9f8f4;
+            --ink:        #2A2924;
+            --ink-soft:   #58554C;
+            --accent:     #33506E;
+            --accent-hi:  #A9824C;   /* muted brass, hover/press   */
+            --hairline:   #D8D2C2;
+            --border-old: #adaa9f;
+            --border-old-pic: #e7e7e7;
+            --nice-blue:  #2E3092;
+            --nice-red:   #9F236C;
+            --nice-green: #0B7005;
+            --card-border: #CFC5A8;
 
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+            --font-display: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+            --font-body:    "Palatino Linotype", Palatino, Georgia, serif;
+            --font-mono:    "JetBrains Mono", "Courier New", monospace;
 
-<!-- MathJax Latex Script-->
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+            --radius: 2px;
+            --max-width: 780px;
+        }
 
-<style>
-#content{
-	width: 95%;
-	float: left;
-	min-width: none;
-	max-width: none;
-	padding-left: 10px;
-}
-</style>
+        * { 
+            box-sizing: border-box; 
+        }
 
+        body {
+            margin: 0;
+            font-family: var(--font-body);
+            color: var(--ink);
+            line-height: 1.5;
+            background-color: var(--backdrop);
+            
+            /* faint woven texture standing in for a desk surface, no image needed */
+            background-image:
+                repeating-linear-gradient(45deg, rgba(0,0,0,0.025) 0, rgba(0,0,0,0.025) 1px, transparent 1px, transparent 6px),
+                repeating-linear-gradient(-45deg, rgba(255,255,255,0.25) 0, rgba(255,255,255,0.25) 1px, transparent 1px, transparent 6px);
+        }
 
-<title>MA 262 Fall '25</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-<link rel="stylesheet" href="Taylor%20Daniel%27s%20Homepage_files/bootstrap.css">
-<script src="Taylor%20Daniel%27s%20Homepage_files/jquery.js"></script>
-<script src="Taylor%20Daniel%27s%20Homepage_files/bootstrap.js"></script>
+        h1 {
+            color: var(--nice-red);
+        }
+        
+        a {
+            /* color: var(--accent); */
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color .15s ease, color .15s ease;
+        }
+        
+        a:hover {
+            color: var(--accent-hi);
+            border-bottom-color: currentColor;
+        }
 
+        figure {
+            width: 50%; 
+            max-width: 500px; 
+            margin: 20px auto; 
+            text-align: center;
+            border: 4px #ccc;
+        }
+
+        hr.rule {
+            /* border: none; */
+            border-top: 2px solid var(--hr-color);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-block-start: 0.5em;
+            margin-block-end: 0.5em;
+        }
+
+        img {
+            border: 2px solid var(--ink-soft);
+            border-radius: 0px;
+        }
+
+        /* ========== page shell ========== */
+        .page {
+            align-items: center;
+            max-width: var(--max-width);
+            margin: 1.0rem auto 1.0rem;
+            padding: 1.0rem;
+            /* background: var(--paper); */
+            background-image: url("./pictures/texture2.jpg");
+	        background-repeat: repeat;
+            border: 3px solid var(--border-old);
+            border-radius: 10px;
+            box-shadow: 0 12px 28px rgba(30, 26, 15, 0.18);
+        }
+
+        /* ========== individual "cards" ========== */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            box-shadow: 0 3px 8px rgba(30, 26, 15, 0.08);
+            padding: 1.25rem 1.25rem 0.75rem 1.25rem;
+            margin-bottom: 1.0rem;
+        }
+
+        /* ========== profile card ========== */
+        .profile {
+            /* display: flex; */
+            gap: 1.75rem;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .profile-inner {
+            display: flex;
+            gap: 3.0rem;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            
+            max-width: 620px; 
+            margin: 0 auto;
+        }
+
+        .profile img.headshot {
+            width: 160px;
+            height: auto;
+            border: 2px solid var(--ink-soft);
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .profile-text {
+            min-width: 240px;
+            /* flex: 1; */
+        }
+
+        .profile-text h1 {
+            font-family: var(--font-display);
+            font-size: 1.9rem;
+            letter-spacing: 0.02em;
+            margin: 0 0 0.15rem;
+        }
+
+        .profile-text .loc {
+            margin: 0;
+            font-size: 1.05rem;
+            color: var(--ink-soft);
+        }
+
+        .profile-text .role {
+            margin: 0 0 0.9rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--accent-hi);
+        }
+        .contact {
+            font-size: 0.95rem;
+            color: var(--ink-soft);
+            margin-bottom: 1rem;
+        }
+
+        .contact div { 
+            margin-bottom: 0.15rem; 
+        }
+
+        /* ========== raised buttons ========== */
+        .button-row {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-top: 0.6rem;
+        }
+
+        .btn-raised {
+            display: inline-block;
+            font-size: 0.85rem;
+            padding: 0.25rem 0.50rem;
+            margin: 0.25rem;
+            background: #f7f4ec;
+            color: #345;
+            text-decoration: underline;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow:
+                0 1px 0 rgba(255,255,255,0.7) inset,
+                0 2px 0 #ccc,
+                0 3px 5px rgba(0,0,0,0.15);
+            transition: transform .12s ease, box-shadow .12s ease;
+        }
+
+        .btn-raised:hover {
+            transform: translateY(-1px);
+            box-shadow:
+                0 1px 0 rgba(255,255,255,0.7) inset,
+                0 3px 0 #ccc,
+                0 5px 8px rgba(0,0,0,0.18);
+        }
+
+        .btn-raised:active {
+            transform: translateY(1px);
+            box-shadow:
+                0 1px 0 rgba(255,255,255,0.4) inset,
+                0 1px 0 #ccc,
+                0 1px 2px rgba(0,0,0,0.15);
+        }
+
+        a .github-repo-card {
+            align-items: center;
+            align-self: stretch; 
+            border: 2px solid var(--pkmn-black);
+            background-color: var(--pkmn-yellow);
+            background-color: var(--bg-page); 
+            border-radius: 0px; 
+            box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.15); 
+            display: flex;
+            justify-content: center;
+            margin: 0px 0 0 0;
+            padding: 5px 5px;
+            page-break-inside: avoid;
+        }
+        a.repo-link {
+            align-items: center;
+            border-radius: 6px;
+            color: webkit-link;
+            cursor: pointer;
+            display: inline-flex;
+            font-size: 14px;
+            font-weight: 700;
+            gap: 10px; 
+            letter-spacing: 0.5px;
+            text-decoration: underline;
+            text-transform: uppercase;
+            transition: background-color 0.2s;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+        a.repo-icon {
+            color: black;
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 20px;
+        }
+        a.repo-header {
+            align-items: center;
+            color: #24292f;
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        /* ========== section scaffolding ========== */
+        section > h2 {
+            color: var(--nice-blue);
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            letter-spacing: 0.01em;
+            margin: 0 0 0.25rem;
+            border-bottom: 2px solid var(--nice-blue);
+        }
+
+        /* ========== footer ========== */
+        #footer {
+            /* display: flex; */
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 1.0rem;
+            color: var(--ink-soft);
+            margin: 0.5rem auto 0 auto;
+            padding: 0;
+            max-width: 250px;
+        }
+
+        #sketch {
+            width: 100%; 
+            height: auto; 
+            border: 1.5px solid var(--accent);
+            border-radius: 4px; 
+        }
+
+        /* ========== publications ========== */
+        .pub-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .pub-list li {
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid var(--hairline);
+        }
+        .pub-list li:last-child { border-bottom: none; }
+
+        /* ========== Young Diagram ========== */
+        .partition-glyph {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            margin-top: 0.3rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 2px;
+        }
+        .partition-glyph span {
+            background: var(--accent-hi);
+            border-radius: 1px;
+            opacity: 0.85;
+        }
+        .pub-note {
+            display: block;
+            margin-top: 0.3rem;
+            font-size: 0.9rem;
+            color: var(--ink-soft);
+        }
+        .pub-note a { 
+            font-size: 0.9rem; 
+        }
+        
+        @media (max-width: 580px) {
+            /* Change .profile to .profile-inner */
+            .profile-inner { 
+                flex-direction: column; 
+                align-items: center; 
+                text-align: center; 
+                gap: 1.0rem;
+            }
+            .contact { 
+                text-align: center; 
+            }
+            .button-row { 
+                justify-content: center; 
+            }
+        }
+        /* ---------- icon system ---------- */
+
+        .icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            background-color: currentColor;
+            -webkit-mask-repeat: no-repeat;
+                    mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+                    mask-position: center;
+            -webkit-mask-size: contain;
+                    mask-size: contain;
+        }
+
+        .icon-github {
+            margin-right: 5px;
+            mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M12%20.297c-6.63%200-12%205.373-12%2012%200%205.303%203.438%209.8%208.205%2011.385.6.113.82-.258.82-.577%200-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422%2018.07%203.633%2017.7%203.633%2017.7c-1.087-.744.084-.729.084-.729%201.205.084%201.838%201.236%201.838%201.236%201.07%201.835%202.809%201.305%203.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93%200-1.31.465-2.38%201.235-3.22-.135-.303-.54-1.523.105-3.176%200%200%201.005-.322%203.3%201.23.96-.267%201.98-.399%203-.405%201.02.006%202.04.138%203%20.405%202.28-1.552%203.285-1.23%203.285-1.23.645%201.653.24%202.873.12%203.176.765.84%201.23%201.91%201.23%203.22%200%204.61-2.805%205.625-5.475%205.92.42.36.81%201.096.81%202.22%200%201.606-.015%202.896-.015%203.286%200%20.315.21.69.825.57C20.565%2022.092%2024%2017.592%2024%2012.297c0-6.627-5.373-12-12-12%22/%3E%3C/svg%3E");
+        }
+
+        .icon-email { 
+            mask-image: url("data:image/svg+xml,..."); 
+        }
+        
+        .linkedin-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            /* color: #0A66C2; */
+        }
+
+        .linkedin-button svg {
+            flex-shrink: 0;
+            color: #0A66C2;
+        }
+
+        /* 1. Strip the default formatting */
+        ul.diamond-list {
+        list-style-type: none; 
+        padding-left: 0;
+        margin: 0;
+        }
+
+        /* 2. Set up the list items */
+        ul.diamond-list li {
+        position: relative;
+        /* padding-left: 1.5em; */
+        /* margin-bottom: 0.5em; */
+        }
+
+        /* 3. Create the green diamond */
+        ul.diamond-list li::before {
+        content: "\25C6";
+        color: var(--nice-green);
+        /* border: 1px solid var(--ink); */
+        }
+
+        /* Target MathJax HTML containers */
+        mjx-container,
+        mjx-container * {
+            font-family: ui-monospace, "Cascadia Code", serif !important;
+        }
+    </style>
+
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
 
 </head>
 
 
 <body>
-
-<div id="wrapper_master">
-<div id="wrapper">
-
-<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-    <!-- Content -->
-<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-<div id="content">
-
-<h2> MA 262, Fall 2025: Differential Equations and Linear Algebra</h2>
-<p>This is a page to keep copies of some course documents and share some useful links.</p>
-
-<!-- ======================================================  --->
+<div class="page">
+    <header class="profile card">
+        <h1> MA 262, Fall 2025: Differential Equations and Linear Algebra</h1>
+        <p>This is a page to keep copies of some course documents and share some useful links.</p>
+    </header>
+    <!-- ======================================================  --->
     <!-- Contacts -->
-<!-- ======================================================  --->
-    <div id="contact", style="margin-left:30px; margin-right:30px; display:block;">
-        <h3>Contacts and Office Hours</h3>
-        <hr>
+    <!-- ======================================================  --->
+    <section class="card" id="contact">
+        <h2>Contacts and Office Hours</h2>
         <p><u><b>Dr. Taylor Daniels</b></u>: Course instructor<br>
             &emsp;<b>Office Hours:</b> M/W/F 12:30pm&ndash;1:30pm, or by appointment. <br>
             &emsp;<b>Office:</b> ET 314 (Purdue in Indianapolis) <br>
@@ -72,14 +448,13 @@
             <!-- &emsp;<b>Office:</b> _ <br> -->
             &emsp;<b>Email:</b> couseph, followed by "at" and purdue dot edu
         </p>
-    </div>
+    </section>
 
-<!-- ======================================================  --->
+    <!-- ======================================================  --->
     <!-- Sections and times -->
-<!-- ======================================================  --->
-    <div id="info", style="margin-left:30px; margin-right:30px; display:block;">
-    <h3> Lecture and recitation sections and times </h3>
-        <hr>
+    <!-- ======================================================  --->
+    <section class="card" id="info">
+        <h2> Lecture and recitation sections and times </h2>
         <p><u>Lectures:</u> <br>
             &emsp; M/W/F 11:30am&ndash;12:20pm, in room ET 202. (Section 990) <br>
             &emsp; M/W/F 2:30pm&ndash;3:20pm, in room ET 202. (Section 880)
@@ -89,93 +464,97 @@
             &emsp; Thu 10:30am&ndash;11:20am, room ET 329. TA: Shabaz Khan (Section 992) <br>
             &emsp; Thu 11:30am&ndash;12:20pm, room ET 329. TA: Shabaz Khan (Section 991)
         </p>
-        
+
         <p><u>Recitations for students in the 2:30pm lecture:</u><br>
             &emsp; Thu 12:30pm&ndash;1:20pm, in room ET 308. TA: Chrisil Ouseph (Section 881) <br>
             &emsp; Thu 1:30pm&ndash;2:20pm, room ET 308. TA: Chrisil Ouseph (Section 882)
         </p>
-    </div>
+    </section>
 
-<!-- ======================================================  --->
+    <!-- ======================================================  --->
     <!-- Course Docs -->
-<!-- ======================================================  --->
-    <div id="docs", style="margin-left:30px; margin-right:30px; display:block;">
-        <h3> Course docs and other pages </h3>
-        <hr>
+    <!-- ======================================================  --->
+    <section class="card" id="docs">
+        <h2> Course docs and other pages </h2>
         <a href="./MA262/Docs/MA262-Fall25-CourseSyllabus.pdf">Course-wide syllabus</a> <br>
 
-        <a href="https://www.math.purdue.edu/academic/courses/oldexams.php?course=MA26200">Past Exam Archive for MA-262</a> <br>
-            <br>
+        <a href="https://www.math.purdue.edu/academic/courses/oldexams.php?course=MA26200">Past Exam Archive
+            for MA-262</a> <br>
+        <br>
 
         <a href="./MA262/Docs/[Exam1] ReviewQuestions.pdf">Exam 1 review questions</a> <br>
-            &emsp;&emsp;&ndash; <a href="./MA262/Docs/[Exam1] ReviewSolutions.pdf">Review solutions</a> <br>
+        &emsp;&emsp;&ndash; <a href="./MA262/Docs/[Exam1] ReviewSolutions.pdf">Review solutions</a> <br>
         <a href="./MA262/Docs/[Exam1] AnswerKeys.txt">Exam 1 Answer Keys</a> <br>
-            <br>
+        <br>
 
         <h4 style="display:inline">Exam 2</h4>
-            <br>
-            <u>Date/Time:</u> Tuesday, Nov. 11, 6:30pm-7:30pm <br>
-            <u>Location:</u> LE 100 <br>
-            Covers lessons [L15]&ndash;[L26]; 11 multiple choice questions (9 pts each) plus 1 free point.
-            <br>
+        <br>
+        <u>Date/Time:</u> Tuesday, Nov. 11, 6:30pm-7:30pm <br>
+        <u>Location:</u> LE 100 <br>
+        Covers lessons [L15]&ndash;[L26]; 11 multiple choice questions (9 pts each) plus 1 free point.
+        <br>
         <a href="./MA262/Docs/[Exam2] ReviewQuestions.pdf">Exam 2 review questions</a> <br>
-            &emsp;&emsp;&ndash; <a href="./MA262/Docs/[Exam2] ReviewSolutions.pdf">Review solutions</a> <br>
+        &emsp;&emsp;&ndash; <a href="./MA262/Docs/[Exam2] ReviewSolutions.pdf">Review solutions</a> <br>
         Review session 11/11:<a href="./MA262/Docs/ReviewSession.pdf">Notes</a><br>
-            <br>
-        
-        <h4 style="display:inline">Final Exam</h4>
-            <br>
-            <u>Date/Time:</u> Thursday, Dec. 18, 8:00am-10:00am <br>
-            <u>Locations:</u> <span style="color:red;">NOTE: There are two different locations, separated by your sections.</span><br>
-                &emsp;&ndash; For sections 991 and 992 (11:30am lectures) only: LE 105 <br>
-                &emsp;&ndash; For sections 881 and 882 (2:30pm lectures) only: ET 302 <br>
-            Covers all lessons (except [L11] Euler's method); 20 multiple choice questions (10 pts each)
-            <br>
-            <a href="./MA262/Docs/[Final] ReviewQuestions.pdf">Final exam review questions</a> <br>
-            &emsp;&emsp;&ndash; <a href="./MA262/Docs/[Final] ReviewSolutions.pdf">Review solutions</a> <br>
-            
-            <br>
-        <a href="https://piazza.com/class/met7crpdzho24b/">Piazza Forum</a>
-    </div>
+        <br>
 
-<!-- ======================================================  --->
+        <h4 style="display:inline">Final Exam</h4>
+        <br>
+        <u>Date/Time:</u> Thursday, Dec. 18, 8:00am-10:00am <br>
+        <u>Locations:</u> <span style="color:red;">NOTE: There are two different locations, separated by
+            your sections.</span><br>
+        &emsp;&ndash; For sections 991 and 992 (11:30am lectures) only: LE 105 <br>
+        &emsp;&ndash; For sections 881 and 882 (2:30pm lectures) only: ET 302 <br>
+        Covers all lessons (except [L11] Euler's method); 20 multiple choice questions (10 pts each)
+        <br>
+        <a href="./MA262/Docs/[Final] ReviewQuestions.pdf">Final exam review questions</a> <br>
+        &emsp;&emsp;&ndash; <a href="./MA262/Docs/[Final] ReviewSolutions.pdf">Review solutions</a> <br>
+
+        <br>
+        <a href="https://piazza.com/class/met7crpdzho24b/">Piazza Forum</a>
+    </section>
+
+    <!-- ======================================================  --->
     <!-- Desmos Links --->
-<!-- ======================================================  --->
-    <div id="desmos", style="margin-left:30px; margin-right:30px; display:block;">
-        <h4> Some Graphing Tools </h4>
-        <hr>
+    <!-- ======================================================  --->
+    <section class="card" id="desmos">
+        <h2> Some Graphing Tools </h2>
         <a href="https://www.desmos.com/calculator/ukpj1mwqlp">Desmos Basics</a> <br>
         <a href="https://homepages.bluffton.edu/~nesterd/apps/slopefields.html">Slope Field Plotter</a> <br>
-    </div>
+    </section>
 
-<!-- ======================================================  --->
+    <!-- ======================================================  --->
     <!-- Notes -->
-<!-- ======================================================  --->
-    <div id="Notes", style="margin-left:30px; margin-right:30px; display:block;">
-        <h3>Notes and Extras</h3>
-        <hr>
+    <!-- ======================================================  --->
+    <section class="card" id="Notes">
+        <h2>Notes and Extras</h2>
+        
         <h4 style="display:inline">Ch. 1: Basics; 1st-order ODEs</h4>
         <br>
-            <a href="./MA262/Notes/[L1] Intro.pdf">[L1] Intro</a> <br>
+        <a href="./MA262/Notes/[L1] Intro.pdf">[L1] Intro</a> <br>
 
-            <a href="./MA262/Notes/[L2] General Sols.pdf">[L2] General Solutions</a> <br>
-                &emsp;&emsp;&ndash; <a href="./MA262/Notes/[L2](2) Unknown constants.pdf">Handling unknown constants</a> <br>
+        <a href="./MA262/Notes/[L2] General Sols.pdf">[L2] General Solutions</a> <br>
+        &emsp;&emsp;&ndash; <a href="./MA262/Notes/[L2](2) Unknown constants.pdf">Handling unknown
+            constants</a> <br>
 
-            <a href="./MA262/Notes/[L3] Slope Fields.pdf">[L3] Slope Fields</a> <br>
+        <a href="./MA262/Notes/[L3] Slope Fields.pdf">[L3] Slope Fields</a> <br>
 
-            <a href="./MA262/Notes/[L4] Separable Eqs.pdf">[L4] Separable Eqs</a> <br>
-                &emsp;&emsp;&ndash; <a href="./MA262/Notes/[L4](2) Note on implicit solutions.pdf">Note on implicit solutions</a> <br>
-                &emsp;&emsp;&ndash; <a href="./MA262/Notes/[L4](3) Solutions Vocab.pdf">Solutions vocab chart</a> <br>
+        <a href="./MA262/Notes/[L4] Separable Eqs.pdf">[L4] Separable Eqs</a> <br>
+        &emsp;&emsp;&ndash; <a href="./MA262/Notes/[L4](2) Note on implicit solutions.pdf">Note on implicit
+            solutions</a> <br>
+        &emsp;&emsp;&ndash; <a href="./MA262/Notes/[L4](3) Solutions Vocab.pdf">Solutions vocab chart</a>
+        <br>
 
-            <a href="./MA262/Notes/[L5] 1st order linear eqs.pdf">[L5] 1st-order Linear ODEs</a> <br>
+        <a href="./MA262/Notes/[L5] 1st order linear eqs.pdf">[L5] 1st-order Linear ODEs</a> <br>
 
-            <a href="./MA262/Notes/[L6] Mixture Problems.pdf">[L6] Mixture Problems</a> <br>
-                &emsp;&emsp;&ndash; Mathematica notebook: <a href="./MA262/Notes/Mixture.nb">here</a> <br>
+        <a href="./MA262/Notes/[L6] Mixture Problems.pdf">[L6] Mixture Problems</a> <br>
+        &emsp;&emsp;&ndash; Mathematica notebook: <a href="./MA262/Notes/Mixture.nb">here</a> <br>
 
-            <a href="./MA262/Notes/[L7] Substitution.pdf">[L7] Substitution</a> <br>
-                &emsp;&emsp;&ndash; <a href="./MA262/Notes/[L7](2) ExtraSubNotes.pdf">Extra notes on substitutions</a> <br>
+        <a href="./MA262/Notes/[L7] Substitution.pdf">[L7] Substitution</a> <br>
+        &emsp;&emsp;&ndash; <a href="./MA262/Notes/[L7](2) ExtraSubNotes.pdf">Extra notes on
+            substitutions</a> <br>
 
-            <a href="./MA262/Notes/[L8] Exact eqs and reduction.pdf">[L8] Exact Eqs and Reduction</a> <br>
+        <a href="./MA262/Notes/[L8] Exact eqs and reduction.pdf">[L8] Exact Eqs and Reduction</a> <br>
 
         <!-- ============================== -->
         <!-- Ch. 2 -->
@@ -183,9 +562,10 @@
         <br>
         <h4 style="display:inline">Ch. 2: Populations; Stability</h4>
         <br>
-            <a href="./MA262/Notes/[L9] Population models.pdf">[L9] Population Models</a> <br>
-            <a href="./MA262/Notes/[L10] Stability and equilibrium sols.pdf">[L10] Stability and equilibrium</a> <br>
-            <a href="./MA262/Notes/[L11] Eulers Method.pdf">[L11] Euler's Method</a> <br>
+        <a href="./MA262/Notes/[L9] Population models.pdf">[L9] Population Models</a> <br>
+        <a href="./MA262/Notes/[L10] Stability and equilibrium sols.pdf">[L10] Stability and equilibrium</a>
+        <br>
+        <a href="./MA262/Notes/[L11] Eulers Method.pdf">[L11] Euler's Method</a> <br>
 
         <!-- ============================== -->
         <!-- Ch. 3 -->
@@ -193,19 +573,20 @@
         <br>
         <h4 style="display: inline">Ch. 3: Systems of linear eqs; Matrices</h4>
         <br>
-            <a href="./MA262/Notes/[L12] Review of linear systems.pdf">[L12] Review of linear systems</a> <br>
-            <a href="./MA262/Notes/[L13] Matrices and Elimination.pdf">[L13] Matrices and Elimination</a> <br>
-            <a href="./MA262/Notes/[L14] Reduced echelon form.pdf">[L14] Reduced Echelon Form</a> <br>
+        <a href="./MA262/Notes/[L12] Review of linear systems.pdf">[L12] Review of linear systems</a> <br>
+        <a href="./MA262/Notes/[L13] Matrices and Elimination.pdf">[L13] Matrices and Elimination</a> <br>
+        <a href="./MA262/Notes/[L14] Reduced echelon form.pdf">[L14] Reduced Echelon Form</a> <br>
 
-            <a href="./MA262/Notes/[L15] Matrix Operations">[L15] Matrix Operations</a> <br>
-                &emsp;&emsp;&ndash; (Note: pay special attention to the last section, "vector equations"). <br>
-                &emsp;&emsp;&ndash; <a href="./MA262/Notes/[L15](2) What is a row operation.pdf">What are row operations?</a> <br>
+        <a href="./MA262/Notes/[L15] Matrix Operations">[L15] Matrix Operations</a> <br>
+        &emsp;&emsp;&ndash; (Note: pay special attention to the last section, "vector equations"). <br>
+        &emsp;&emsp;&ndash; <a href="./MA262/Notes/[L15](2) What is a row operation.pdf">What are row
+            operations?</a> <br>
 
-            <a href="./MA262/Notes/[L16] Inverses.pdf">[L16] Inverses</a> <br>
-                &emsp;&emsp;&ndash; <a href="./MA262/Notes/Matrix Eqs.pdf">Matrix Eqs</a> <br>
+        <a href="./MA262/Notes/[L16] Inverses.pdf">[L16] Inverses</a> <br>
+        &emsp;&emsp;&ndash; <a href="./MA262/Notes/Matrix Eqs.pdf">Matrix Eqs</a> <br>
 
-            <a href="./MA262/Notes/[L17-1] Determinants (pt 1).pdf">[L17-1] Determinants (pt 1)</a> <br>
-            <a href="./MA262/Notes/[L17-2] Determinants (pt 2).pdf">[L17-2] Determinants (pt 2)</a> <br>
+        <a href="./MA262/Notes/[L17-1] Determinants (pt 1).pdf">[L17-1] Determinants (pt 1)</a> <br>
+        <a href="./MA262/Notes/[L17-2] Determinants (pt 2).pdf">[L17-2] Determinants (pt 2)</a> <br>
 
         <!-- ============================== -->
         <!-- Ch. 4 -->
@@ -213,19 +594,27 @@
         <br>
         <h4 style="display:inline">Ch. 4: Vectors, Vector Spaces, and Subspaces</h4>
         <br>
-            &ndash; <a href="./MA262/Notes/Outline.pdf">Outline for Ch.4</a> <br>
-            &ndash; <a href="./MA262/Notes/DependenceVocabulary.pdf">Vocab summary for linear in/dependence</a> <br>
-                <br>
-            <a href="./MA262/Notes/[L18] Vector space R^3.pdf">[L18] Span and Independence in R^2 and R^3</a> <br>
-                &emsp;&emsp;&ndash; 3Blue1Brown: 
-                <a href="https://www.youtube.com/watch?v=k7RM-ot2NWY&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab&index=2">Span and Independence</a> ; <a href="https://www.youtube.com/watch?v=kYB8IZa5AuE&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab&index=3">Matrices acting on R^2</a> <br>
+        &ndash; <a href="./MA262/Notes/Outline.pdf">Outline for Ch.4</a> <br>
+        &ndash; <a href="./MA262/Notes/DependenceVocabulary.pdf">Vocab summary for linear in/dependence</a>
+        <br>
+        <br>
+        <a href="./MA262/Notes/[L18] Vector space R^3.pdf">[L18] Span and Independence in R^2 and R^3</a>
+        <br>
+        &emsp;&emsp;&ndash; 3Blue1Brown:
+        <a
+            href="https://www.youtube.com/watch?v=k7RM-ot2NWY&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab&index=2">Span
+            and Independence</a> ; <a
+            href="https://www.youtube.com/watch?v=kYB8IZa5AuE&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab&index=3">Matrices
+            acting on R^2</a> <br>
 
-            <a href="./MA262/Notes/[L19] Subspaces of Rn.pdf">[L19] Subspace examples for R^n</a> <br>
+        <a href="./MA262/Notes/[L19] Subspaces of Rn.pdf">[L19] Subspace examples for R^n</a> <br>
 
-            <a href="./MA262/Notes/[L20-21] Independence and Bases.pdf">[L20-21] Linear independence and bases</a> <br>
-                &emsp;&emsp;&ndash; <a href="./MA262/Notes/[L20-21](2) Determinant and Independence.pdf">Determinant and Independence</a> <br>
+        <a href="./MA262/Notes/[L20-21] Independence and Bases.pdf">[L20-21] Linear independence and
+            bases</a> <br>
+        &emsp;&emsp;&ndash; <a href="./MA262/Notes/[L20-21](2) Determinant and Independence.pdf">Determinant
+            and Independence</a> <br>
 
-            <a href="./MA262/Notes/[L22] Row and Column space.pdf">[L22] Row and Column Space</a> <br>
+        <a href="./MA262/Notes/[L22] Row and Column space.pdf">[L22] Row and Column Space</a> <br>
 
         <!-- ============================== -->
         <!-- Ch. 5 -->
@@ -233,26 +622,39 @@
         <br>
         <h4 style="display:inline">Ch. 5: 2nd-order linear ODEs</h4>
         <br>
-            <a href="./MA262/Notes/[L23] 2nd order linear ODEs.pdf">[L23] 2nd order linear ODEs</a> <br>
+        <a href="./MA262/Notes/[L23] 2nd order linear ODEs.pdf">[L23] 2nd order linear ODEs</a> <br>
 
-            <a href="./MA262/Notes/[L24] General sols to linear ODEs.pdf">[L24] General sols to linear ODEs</a> <br>
-            
-            <a href="./MA262/Notes/[L25] Homog eqs with const coeffs (part 1).pdf">[L25] Homog. eqs with const. coeffs. (part 1)</a> <br>
+        <a href="./MA262/Notes/[L24] General sols to linear ODEs.pdf">[L24] General sols to linear ODEs</a>
+        <br>
 
-            <a href="./MA262/Notes/[L26] Homog eqs with const coeffs (part 2).pdf">[L26] Homog. eqs with const. coeffs. (part 2)</a> <br>
-                &emsp;&emsp;&ndash; <a href="./MA262/Notes/ComplexBasics.pdf">Complex numbers basics</a> <br>
-                &emsp;&emsp;&ndash; Repeated complex roots: <a href="https://mediaspace.itap.purdue.edu/media/RepeatedComplexRoots/1_45keuz0i">Video</a>; <a href="./MA262/Notes/RepeatedComplexRoots.pdf">Notes</a> <br>
+        <a href="./MA262/Notes/[L25] Homog eqs with const coeffs (part 1).pdf">[L25] Homog. eqs with const.
+            coeffs. (part 1)</a> <br>
 
-            [L27] Mechanical vibrations: <a href="https://mediaspace.itap.purdue.edu/media/%5BL27%5D+Mechanical+vibrations/1_9am3ycgg">Video</a>; <a href="./MA262/Notes/[L27] Mechanical vibrations">Notes</a> <br>
+        <a href="./MA262/Notes/[L26] Homog eqs with const coeffs (part 2).pdf">[L26] Homog. eqs with const.
+            coeffs. (part 2)</a> <br>
+        &emsp;&emsp;&ndash; <a href="./MA262/Notes/ComplexBasics.pdf">Complex numbers basics</a> <br>
+        &emsp;&emsp;&ndash; Repeated complex roots: <a
+            href="https://mediaspace.itap.purdue.edu/media/RepeatedComplexRoots/1_45keuz0i">Video</a>; <a
+            href="./MA262/Notes/RepeatedComplexRoots.pdf">Notes</a> <br>
 
-            [L28(1)] Undetermined coeffs (part 1): <a href="https://mediaspace.itap.purdue.edu/media/%5BL28%5D+Undetermined+Coeffs+%28part+1%29/1_i96ysfhk">Video</a>; <a href="./MA262/Notes/[L28(1)] Undetermined coeffs (part 1).pdf">Notes</a> <br>
+        [L27] Mechanical vibrations: <a
+            href="https://mediaspace.itap.purdue.edu/media/%5BL27%5D+Mechanical+vibrations/1_9am3ycgg">Video</a>;
+        <a href="./MA262/Notes/[L27] Mechanical vibrations">Notes</a> <br>
 
-            [L28(2)] Undetermined coeffs (part 2): <a href="https://mediaspace.itap.purdue.edu/media/%5BL29%5D+Undetermined+Coefficients+%28part+2%29/1_nimw3all">Video</a>; <a href="./MA262/Notes/[L28(2)] Undetermined coeffs (part 2).pdf">Notes</a> <br><br>
+        [L28(1)] Undetermined coeffs (part 1): <a
+            href="https://mediaspace.itap.purdue.edu/media/%5BL28%5D+Undetermined+Coeffs+%28part+1%29/1_i96ysfhk">Video</a>;
+        <a href="./MA262/Notes/[L28(1)] Undetermined coeffs (part 1).pdf">Notes</a> <br>
 
-            [L29] Variation of parameters: <a href="https://mediaspace.itap.purdue.edu/media/%5BL29%5D+Variation+of+parameters/1_spix57mf">Video</a>; <a href="./MA262/Notes/[L29] Variation of parameters.pdf">Notes</a> <br>
-                <br>
+        [L28(2)] Undetermined coeffs (part 2): <a
+            href="https://mediaspace.itap.purdue.edu/media/%5BL29%5D+Undetermined+Coefficients+%28part+2%29/1_nimw3all">Video</a>;
+        <a href="./MA262/Notes/[L28(2)] Undetermined coeffs (part 2).pdf">Notes</a> <br><br>
 
-            Clarifying the Wronksian: <a href="./MA262/Notes/WronskianExample.pdf">Notes</a> <br>
+        [L29] Variation of parameters: <a
+            href="https://mediaspace.itap.purdue.edu/media/%5BL29%5D+Variation+of+parameters/1_spix57mf">Video</a>;
+        <a href="./MA262/Notes/[L29] Variation of parameters.pdf">Notes</a> <br>
+        <br>
+
+        Clarifying the Wronksian: <a href="./MA262/Notes/WronskianExample.pdf">Notes</a> <br>
 
 
         <!-- ============================== -->
@@ -261,32 +663,41 @@
         <br>
         <h4 style="display:inline">Ch. 6+7: Eigenvectors and systems of ODEs</h4>
         <br>
-            [L30] Eigenvectors: <a href="./MA262/Notes/[L30] Eigenvectors.pdf">Notes</a>
-                <a href="https://youtu.be/PFDu9oVAE-g?si=_br_lqYk_dx_p4LL&t=80">3Blue1Brown video</a> <br>
-            <br>
-            [&#8727;] Vector ODEs and their solution curves: <a href="https://mediaspace.itap.purdue.edu/media/Drawing+Vector+ODE+solutions/1_lt6kztx0">Video</a>; 
-                <a href="./MA262/Notes/VectorODESolutions.pdf">Notes</a> <br>
-                &emsp;&emsp;[The notes contain two extra pages than what appears in the video] <br>
+        [L30] Eigenvectors: <a href="./MA262/Notes/[L30] Eigenvectors.pdf">Notes</a>
+        <a href="https://youtu.be/PFDu9oVAE-g?si=_br_lqYk_dx_p4LL&t=80">3Blue1Brown video</a> <br>
+        <br>
+        [&#8727;] Vector ODEs and their solution curves: <a
+            href="https://mediaspace.itap.purdue.edu/media/Drawing+Vector+ODE+solutions/1_lt6kztx0">Video</a>;
+        <a href="./MA262/Notes/VectorODESolutions.pdf">Notes</a> <br>
+        &emsp;&emsp;[The notes contain two extra pages than what appears in the video] <br>
 
-            [L31-32] Systems of 1st order eqs: <a href="https://mediaspace.itap.purdue.edu/media/%5BL31-32%5D+Systems+of+1st+order+eqs/1_5e9qamif">Video</a>; 
-                <a href="./MA262/Notes/[L31-32] Systems of 1st order eqs.pdf">Notes</a> <br>
-            
-            [L33] The "eigenvalue method" for vector diff. eqs.: <a href="https://mediaspace.itap.purdue.edu/media/%5BL33%5D+Eigenvalue+method/1_escpkxip">Video</a>; 
-                <a href="./MA262/Notes/[L33] Eigenvalue method.pdf">Notes</a> <br>
-                
-            [L34(1)] Repeated eigenvalues (part 1): <a href="./MA262/Notes/[L34(1)] Repeated eigenvalues (part 1).pdf">Notes</a> <br>
+        [L31-32] Systems of 1st order eqs: <a
+            href="https://mediaspace.itap.purdue.edu/media/%5BL31-32%5D+Systems+of+1st+order+eqs/1_5e9qamif">Video</a>;
+        <a href="./MA262/Notes/[L31-32] Systems of 1st order eqs.pdf">Notes</a> <br>
 
-            [L34(2)] Repeated eigenvalues (part 2): <a href="./MA262/Notes/[L34(2)] Repeated eigenvalues (part 2).pdf">Notes</a> <br>
-                &emsp;&emsp;&ndash; Example with defect 2: <a href="./MA262/Notes/Defect 2 Example.pdf">Notes</a> <br>
+        [L33] The "eigenvalue method" for vector diff. eqs.: <a
+            href="https://mediaspace.itap.purdue.edu/media/%5BL33%5D+Eigenvalue+method/1_escpkxip">Video</a>;
+        <a href="./MA262/Notes/[L33] Eigenvalue method.pdf">Notes</a> <br>
 
-            [L35] Gallery of Solutions (1): <a href="./MA262/Notes/[L35] Gallery of solutions (1).pdf">Notes</a> <br>
+        [L34(1)] Repeated eigenvalues (part 1): <a
+            href="./MA262/Notes/[L34(1)] Repeated eigenvalues (part 1).pdf">Notes</a> <br>
 
-            [L36] Gallery of Solutions (2) (Complex eigenvalues): <br>
-                &emsp;&emsp;&ndash; For this, please read about "centers" on book pp. 410-1, and about "spiral sources/sinks" on pp. 414-5. <br>
-                &emsp;&emsp;&ndash; "Phase plane" plotter app: <a href="https://www.geogebra.org/m/fYxXgbsU">Link</a> <br>
+        [L34(2)] Repeated eigenvalues (part 2): <a
+            href="./MA262/Notes/[L34(2)] Repeated eigenvalues (part 2).pdf">Notes</a> <br>
+        &emsp;&emsp;&ndash; Example with defect 2: <a href="./MA262/Notes/Defect 2 Example.pdf">Notes</a>
+        <br>
 
-            <br>
-            
+        [L35] Gallery of Solutions (1): <a href="./MA262/Notes/[L35] Gallery of solutions (1).pdf">Notes</a>
+        <br>
+
+        [L36] Gallery of Solutions (2) (Complex eigenvalues): <br>
+        &emsp;&emsp;&ndash; For this, please read about "centers" on book pp. 410-1, and about "spiral
+        sources/sinks" on pp. 414-5. <br>
+        &emsp;&emsp;&ndash; "Phase plane" plotter app: <a
+            href="https://www.geogebra.org/m/fYxXgbsU">Link</a> <br>
+
+        <br>
+
 
         <!-- ============================== -->
         <!-- Extras -->
@@ -294,15 +705,15 @@
         <br>
         <h4 style="display:inline">(Extra) Least Squares</h4>
         <br>
-            <a href="./MA262/Notes/LeastSquares.ipynb">IPython notebook</a>
-    </div>
+        <a href="./MA262/Notes/LeastSquares.ipynb">IPython notebook</a>
+    </section>
 
-<!-- ======================================================  --->
+    <!-- ======================================================  --->
     <!-- Calendar -->
-<!-- ======================================================  --->
-    <div id="Calendar", style="margin-left:30px; margin-right:30px; display:block">
-        <h3>Course Calendar</h3>
-        <hr>
+    <!-- ======================================================  --->
+    <section class="card" id="Calendar">
+        <h2>Course Calendar</h2>
+        
         <p><b>Colors:</b><br>
             &emsp;&emsp; <span style="color:green;">&#9632;</span> - Lessons<br>
             &emsp;&emsp; <span style="color:gold;">&#9632;</span> - HW & Quizzes <br>
@@ -311,29 +722,28 @@
         <p><b>Notes:</b></p>
         <p>Lessons are listed as<br>
 
-            &emsp;&emsp;[L&#9001;<i>#</i>&#9002;] Sec. &#9001;<i>#</i>&#9002;, &#9001;<i>Topics</i>&#9002;,<br>
-        and HW #'s indicate the material's corresponding lesson number. Some lessons have parts (1) and (2), but there is still only one homework associated to the lesson. Some book sections/topics are spread over more than one lesson.</p>
+            &emsp;&emsp;[L&#9001;<i>#</i>&#9002;] Sec. &#9001;<i>#</i>&#9002;,
+            &#9001;<i>Topics</i>&#9002;,<br>
+            and HW #'s indicate the material's corresponding lesson number. Some lessons have parts (1) and
+            (2), but there is still only one homework associated to the lesson. Some book sections/topics
+            are spread over more than one lesson.</p>
 
         <p>Quiz topics are shown using<br>
             &emsp;&emsp;[Q: &#9001;<i>#</i>&#9002;],<br>
-        where &#9001;<i>#</i>&#9002; lists the lesson/homework numbers covered by the quiz.</p>
+            where &#9001;<i>#</i>&#9002; lists the lesson/homework numbers covered by the quiz.</p>
 
         <p>Exams list the lessons covered, e.g., [L:1-14]. </p>
 
-        <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FIndiana%2FIndianapolis&showPrint=0&src=Y2U3ZDkwYWQ3OTM2MWE0OTFiZmYzNmZiZWYxZWQ3NWZkMDU2NTlkMzdmNGNiNTliYmQ4NGY4YWE5OGM0YWViOEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=YTRiOThlYmI2MjAzMDJmYmE1NjE1NTY4MTU5ZGY0NjBmNjJhMTY0OTViMDJlYjZjNWU1MzdmOTE4Mzk1NDM0YUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ZmZiZGI1NGFkMzViOGE1YWU1NGQwNjgzZDM1ZjU4MTMxMGM4ZWVjNzI3YzM5MzZiNzg4OWI4MjJlOWZlMDdmZEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23D50000&color=%23F6BF26&color=%230B8043" style="border:solid 1px #777" width="700" height="525" frameborder="0" scrolling="no"></iframe>
-    </div>
+        <iframe
+            src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FIndiana%2FIndianapolis&showPrint=0&src=Y2U3ZDkwYWQ3OTM2MWE0OTFiZmYzNmZiZWYxZWQ3NWZkMDU2NTlkMzdmNGNiNTliYmQ4NGY4YWE5OGM0YWViOEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=YTRiOThlYmI2MjAzMDJmYmE1NjE1NTY4MTU5ZGY0NjBmNjJhMTY0OTViMDJlYjZjNWU1MzdmOTE4Mzk1NDM0YUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ZmZiZGI1NGFkMzViOGE1YWU1NGQwNjgzZDM1ZjU4MTMxMGM4ZWVjNzI3YzM5MzZiNzg4OWI4MjJlOWZlMDdmZEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23D50000&color=%23F6BF26&color=%230B8043"
+            style="border:solid 1px #777" width="700" height="525" frameborder="0" scrolling="no"></iframe>
+    </section>
 
-<!-- ======================================================  --->
-<!-- ======================================================  --->
-<!-- ======================================================  --->
-</div> <!-- /Content -->	
-			
-<div id="cleared"></div>
+    <!-- ======================================================  --->
+    <!-- ======================================================  --->
+    <!-- ======================================================  --->
 
-<p> </p>
-
-</div> <!-- /Wrapper -->
-</div> <!-- /Wrapper master -->
-
+</div> <!-- Page -->
 </body>
+
 </html>

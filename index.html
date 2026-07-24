@@ -52,7 +52,7 @@
         }
         
         a {
-            color: var(--accent);
+            /* color: var(--accent); */
             text-decoration: none;
             border-bottom: 1px solid transparent;
             transition: border-color .15s ease, color .15s ease;
@@ -191,7 +191,7 @@
             padding: 0.25rem 0.50rem;
             margin: 0.25rem;
             background: #f7f4ec;
-            color: #345;
+            /* color: #345; */
             text-decoration: underline;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -406,11 +406,15 @@
         color: var(--nice-green);
         /* border: 1px solid var(--ink); */
         }
+
+        /* Target MathJax HTML containers */
+        mjx-container,
+        mjx-container * {
+            font-family: ui-monospace, "Cascadia Code", serif !important;
+        }
     </style>
 
-    <script type="text/javascript" async
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
 </head>
 
 <!-- ==================== -->
